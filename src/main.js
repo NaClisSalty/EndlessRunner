@@ -1,4 +1,8 @@
-//oh god why
+//name:
+//CMPM 120
+//Ian Monahan
+//
+//
 let config = {
     type: Phaser.CANVAS,
     width: 640,

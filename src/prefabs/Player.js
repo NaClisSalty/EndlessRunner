@@ -1,1 +1,5 @@
-//yo
+class Player {
+    constructor() {
+        super(this);
+    }
+}

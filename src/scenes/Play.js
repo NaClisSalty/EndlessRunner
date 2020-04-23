@@ -2,15 +2,21 @@ class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
     }
-    init(data){}
+    init(data){
 
-    preload() {} 
+    }
+
+    preload() {
+
+    } 
 
     create() {
         game.events.addListener(Phaser.Core.Events.FOCUS, this._onFocus, this);
         game.events.addListener(Phaser.Core.Events.BLUR, this._onBlur, this);
     }
-    update() {}
+    update() {
+        
+    }
 
     _onFocus() {
         this.pauseGame(false);
