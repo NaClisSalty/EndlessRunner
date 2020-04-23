@@ -2,6 +2,9 @@ class Menu extends Phaser.Scene {
     constructor() {
         super("menuScene");
     }
+    init(data) {
+
+    }
     preload() {
 
     }
@@ -10,6 +13,7 @@ class Menu extends Phaser.Scene {
     }
 
     update() {
-         
+        this.scene.start("playScene");    
+
     }
 }

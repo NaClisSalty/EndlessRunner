@@ -1,5 +1,5 @@
 class TextBox {
     constructor() {
-        super(this);
+        //super(this);
     }
 }
