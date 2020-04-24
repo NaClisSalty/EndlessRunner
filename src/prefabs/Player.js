@@ -3,7 +3,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         scene.physics.add.existing(this);
-
+        this.setCollideWorldBounds(true);
         //Pid controller stuff for movement/mouse tracking
         //Abandon hope, all ye who seek to understand this without outside knowledge
         //Credit for implementation goes to Feedback Control for Computer Systems

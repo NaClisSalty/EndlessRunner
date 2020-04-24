@@ -9,7 +9,7 @@ class Menu extends Phaser.Scene {
         this.load.atlas('map', 'typeObjects.png', 'sprites.json');
     }
     create() {
-        this.add.sprite(x,y, 'key', 'frame_name');
+        //this.add.sprite(x,y, 'key', 'frame_name');
     }
 
     update() {

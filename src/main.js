@@ -15,7 +15,13 @@ let config = {
             gravity: {
                 x: 0,
                 y: 0
-            }
+            },
+            checkCollision: {
+                up: true,
+                down: true,
+            },
+            width: 640,
+            height:480,
         }
     },
 };
