@@ -8,9 +8,9 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         //Abandon hope, all ye who seek to understand this without outside knowledge
         //Credit for implementation goes to Feedback Control for Computer Systems
         //By Philipp K. Janert, part of the O'Reilly books
-        this.kp = 10; //amount to change position based on difference between mouse pos and player pos
-        this.ki = 0.001; //Amount to change position based on previous error
-        this.kd = 1500; //Supposedly predicts future movement, but that's not the effect I've noticed
+        this.kp = 60; //amount to change position based on difference between mouse pos and player pos
+        this.ki = 0.0005; //Amount to change position based on previous error
+        this.kd = 7000; //Supposedly predicts future movement, but that's not the effect I've noticed
         
         this.i = 0; //tracks cumulative error
         this.prior = 0; //Tracks previous error
