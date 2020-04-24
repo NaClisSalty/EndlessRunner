@@ -3,9 +3,13 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         scene.physics.add.existing(this);
+        this.body.setDragY(20);
     }
 
     update(mouseX, mouseY){
-        this.setAccelerationY(this.body.acceleration.y + (mouseY - this.y));
+        if(Math.abs(mouseY-this.y) < 50)
+            this.setAccelerationY((this.y - mouseY));
+        else
+            this.setAccelerationY((mouseY-this.y));
     }
 }

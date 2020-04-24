@@ -46,7 +46,8 @@ class Play extends Phaser.Scene {
                     obj.x,obj.y,obj.width,obj.height));
             },this);
         }
-        this.player.update(this.input.activePointer.x, this.input.activePointer.y);
+        this.player.update(this.input.activePointer.x, this.input.activePointer.y); 
+        //this.physics.accelerateTo(this.player, this.player.x, this.input.activePointer.y);
     }
 
     _onFocus() {
