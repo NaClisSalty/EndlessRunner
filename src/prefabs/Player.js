@@ -6,8 +6,6 @@ class Player extends Phaser.Physics.Arcade.Sprite{
     }
 
     update(mouseX, mouseY){
-        console.log(mouseX);
-        console.log(mouseY);
-        this.setVelocityY((mouseY - this.y)/2);
+        this.setAccelerationY(this.body.acceleration.y + (mouseY - this.y));
     }
 }
