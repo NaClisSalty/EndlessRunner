@@ -31,7 +31,7 @@ class Play extends Phaser.Scene {
         //Make the player
         this.player = new Player(this, 20, 240, "player", 0);
     }
-    update() {
+    update(time, delta) {
         //update all objects in gameObjects
         this.gameObjects.forEach(function(obj) {
             obj.update();
@@ -46,8 +46,7 @@ class Play extends Phaser.Scene {
                     obj.x,obj.y,obj.width,obj.height));
             },this);
         }
-        this.player.update(this.input.activePointer.x, this.input.activePointer.y); 
-        //this.physics.accelerateTo(this.player, this.player.x, this.input.activePointer.y);
+        this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
     }
 
     _onFocus() {
