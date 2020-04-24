@@ -7,7 +7,7 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
-
+        this.load.image("player","./Assets/PlayerPlaceholder.png")
     } 
 
     create() {
@@ -28,6 +28,8 @@ class Play extends Phaser.Scene {
 
         //game object arrays
         this.gameObjects = [];
+        //Make the player
+        this.player = new Player(this, 20, 240, "player", 0);
     }
     update() {
         //update all objects in gameObjects
@@ -44,6 +46,7 @@ class Play extends Phaser.Scene {
                     obj.x,obj.y,obj.width,obj.height));
             },this);
         }
+        this.player.update(this.input.activePointer.x, this.input.activePointer.y);
     }
 
     _onFocus() {
