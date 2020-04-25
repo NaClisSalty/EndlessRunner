@@ -1,5 +1,5 @@
 class Player extends Phaser.Physics.Arcade.Sprite{
-    constructor(scene, x, y, texture, frame) {
+    constructor(scene, x, y, texture, frame, shieldValue) {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -15,6 +15,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         
         this.i = 0; //tracks cumulative error
         this.prior = 0; //Tracks previous error
+        this.shieldValue = false;
     }
 
     update(mouseX, mouseY, dT){
