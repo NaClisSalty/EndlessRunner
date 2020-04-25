@@ -19,7 +19,36 @@ class Powerup extends Phaser.GameObjects.Sprite{
 
     */
 
+    playerGoBig(){
+        //increase player cursor size temporarily
+    }
+    playerGoSmall(){
 
+    }
+    playerGetShield(){
+
+    }
+    playerGoFast(){
+
+    }
+    playerGoSlow(){
+
+    }
+    playerIsMouse(){
+
+    }
+    playerShoot(){
+
+    }
+    permanentPower(){
+
+    }
+    allSpeedUp(){
+
+    }
+    marioStarPower(){
+        
+    }
     update(){
         //speed for upgrades
         this.x -= game.settings.powerSpeed;
