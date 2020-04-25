@@ -46,6 +46,10 @@ class Play extends Phaser.Scene {
             },this);
         }
         this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
+        this.walls = this.add.group({
+            runChildUpdate: true
+        });
+        this.physics.world.collide(this.player, this.walls, this.playerCollide, null, this);
     }
 
     _onFocus() {
@@ -55,5 +59,9 @@ class Play extends Phaser.Scene {
     _onBlur() {
         this.paused = true;
         console.log("Bye!")
+    }
+
+    playerCollide(){
+        
     }
 }
