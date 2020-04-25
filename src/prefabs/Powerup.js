@@ -30,7 +30,7 @@ class Powerup extends Phaser.GameObjects.Sprite{
         this.player.shieldValue = true;
     }
     playerGoFast(player){
-        this.player.kp*1000;
+        this.player.kp+1000;
     }
     playerGoSlow(player){
         this.player.kp*.5;
