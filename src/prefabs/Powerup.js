@@ -19,23 +19,23 @@ class Powerup extends Phaser.GameObjects.Sprite{
 
     */
 
-    playerGoBig(){
+    playerGoBig(player){
         //increase player cursor size temporarily
         this.player.setScale(2);
     }
-    playerGoSmall(){
+    playerGoSmall(player){
         this.player.setScale(.5);
     }
-    playerGetShield(){
+    playerGetShield(player){
         this.player.shieldValue = true;
     }
-    playerGoFast(){
-        this.player.kd*1000;
+    playerGoFast(player){
+        this.player.kp*1000;
     }
-    playerGoSlow(){
-        this.player.kd*.5;
+    playerGoSlow(player){
+        this.player.kp*.5;
     }
-    playerIsMouse(){
+    playerIsMouse(player){
         //???
     }
     /*
