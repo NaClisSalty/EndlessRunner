@@ -32,7 +32,7 @@ class Play extends Phaser.Scene {
         this.powerAffects = [];
         this.powerAffects.push((player) => {player.setScale(2)});
         this.powerAffects.push((player) => {player.setScale(.5)});
-        this.powerAffects.push((player) => {player.shieldValue = true;});
+        this.powerAffects.push((player) => {player.shieldValue = true});
         this.powerAffects.push((player) => {player.kp+1000});
         this.powerAffects.push((player) => {player.kp*.5});
         this.powerAffects.push((player) => {});
