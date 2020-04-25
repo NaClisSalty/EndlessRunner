@@ -1,5 +1,5 @@
 class Player extends Phaser.Physics.Arcade.Sprite{
-    constructor(scene, x, y, texture, frame, shieldValue) {
+    constructor(scene, x, y, texture, frame, multiDMove) {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -16,9 +16,11 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.i = 0; //tracks cumulative error
         this.prior = 0; //Tracks previous error
         this.shieldValue = false;
-
-        this.xi = 0; //tracks cumulative error
-        this.xprior = 0; //Tracks previous error
+        this.moveDimensions = multiDMove;
+        if(multiDMove){
+            this.xi = 0; //tracks cumulative error
+            this.xprior = 0; //Tracks previous error
+        }
     }
 
     update(mouseX, mouseY, dT){
@@ -31,15 +33,16 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.prior = difference;
 
         this.setAccelerationY(this.kp * difference + this.ki * this.i + d * this.kd);
+        if(this.moveDimensions){
+            //Need to know the error/difference a lot, so just define it
+            let differencex = mouseX - this.x;
+            //Add to the cumulative error the new change
+            this.xi += differencex * dT;
+            //Define the difference between previous and current error
+            let dx = (differencex - this.xprior)/dT;
+            this.xprior = differencex;
 
-        //Need to know the error/difference a lot, so just define it
-        let differencex = mouseX - this.x;
-        //Add to the cumulative error the new change
-        this.xi += differencex * dT;
-        //Define the difference between previous and current error
-        let dx = (differencex - this.xprior)/dT;
-        this.xprior = differencex;
-
-        this.setAccelerationX(this.kp * differencex + this.ki * this.i + dx * this.kd);
+            this.setAccelerationX(this.kp * differencex + this.ki * this.i + dx * this.kd);
+        }
     }
 }

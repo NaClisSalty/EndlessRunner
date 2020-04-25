@@ -28,7 +28,7 @@ class Play extends Phaser.Scene {
         //game object arrays
         this.gameObjects = [];
         //Make the player
-        this.player = new Player(this, 60, 240, "player", 0);
+        this.player = new Player(this, 60, 240, "player", 0, true);
     }
     update(time, delta) {
         //update all objects in gameObjects
@@ -62,6 +62,6 @@ class Play extends Phaser.Scene {
     }
 
     playerCollide(){
-        
+
     }
 }
