@@ -1,7 +1,8 @@
 class Powerup extends Phaser.GameObjects.Sprite{
-    constructor(scene, x, y, texture, frame) {
+    constructor(scene, x, y, texture, frame, funct) {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
+        this.effect = funct;
     }
 
     /*
