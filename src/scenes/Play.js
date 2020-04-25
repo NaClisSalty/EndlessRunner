@@ -39,7 +39,7 @@ class Play extends Phaser.Scene {
 
         //Make the player
         this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
-        this.powerUpTest = new Powerup(this, 400, 300, "player", 0, (player) => {player.setScale(2)});
+        this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects].length));
         this.powerUpTest.effect(this.player);
         this.walls = this.add.group({
             runChildUpdate: true
