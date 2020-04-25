@@ -31,6 +31,9 @@ class Play extends Phaser.Scene {
         this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
         this.powerUpTest = new Powerup(this, 400, 300, "player", 0, (player) => {player.setScale(2)});
         this.powerUpTest.effect(this.player);
+        this.walls = this.add.group({
+            runChildUpdate: true
+        });
     }
     update(time, delta) {
         //update all objects in gameObjects
@@ -48,9 +51,7 @@ class Play extends Phaser.Scene {
             },this);
         }
         this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
-        this.walls = this.add.group({
-            runChildUpdate: true
-        });
+        
         this.physics.world.collide(this.player, this.walls, this.playerCollide, null, this);
     }
 
