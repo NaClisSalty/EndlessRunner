@@ -27,6 +27,9 @@ class Play extends Phaser.Scene {
 
         //game object arrays
         this.gameObjects = [];
+
+        //powerArray
+        this.powerAffects = [];
         //Make the player
         this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
         this.powerUpTest = new Powerup(this, 400, 300, "player", 0, (player) => {player.setScale(2)});
