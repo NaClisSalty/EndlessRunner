@@ -6,8 +6,11 @@ class Menu extends Phaser.Scene {
 
     }
     preload() {
-        this.load.atlas('map', 'typeObjects.png', 'sprites.json');
+        this.load.path = './Assets/'
+        this.load.image("player","PlayerPlaceholder.png");
+        this.load.atlas('images', "typeObjects.png", "sprites.json");
     }
+    
     create() {
         //this.add.sprite(x,y, 'key', 'frame_name');
     }

@@ -7,7 +7,6 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("player","./Assets/PlayerPlaceholder.png")
     } 
 
     create() {
@@ -29,7 +28,7 @@ class Play extends Phaser.Scene {
         //game object arrays
         this.gameObjects = [];
         //Make the player
-        this.player = new Player(this, 20, 240, "player", 0);
+        this.player = new Player(this, 60, 240, "player", 0);
     }
     update(time, delta) {
         //update all objects in gameObjects
