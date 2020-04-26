@@ -33,17 +33,25 @@ class Play extends Phaser.Scene {
         this.powerAffects.push((player) => {player.setScale(2)});
         this.powerAffects.push((player) => {player.setScale(.5)});
         this.powerAffects.push((player) => {player.shieldValue = true});
-        this.powerAffects.push((player) => {player.kp+1000});
+        this.powerAffects.push((player) => {player.kp+10});
         this.powerAffects.push((player) => {player.kp*.5});
-        this.powerAffects.push((player) => {});
+        this.powerAffects.push(function(player) {console.log("test!")});
+        this.powerAffects.push(function(player) {player.setScale(2);return true});
+
 
         //Make the player
         this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
-        this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects].length));
-        this.powerUpTest.effect(this.player);
-        this.walls = this.add.group({
+        var rand = 6;//Math.floor(Math.random() * this.powerAffects.length-1);
+        //this.powerUpTest = new Powerup(this, 400, 300, "cash", 0, this.powerAffects[rand]);
+        
+        //this.powerUpTest.effect(this.player);
+        //console.log(this.testPowerSprite.effect);
+        //this.testPowerSprite.effect();
+        this.wallsGroup = this.add.group({
             runChildUpdate: true
         });
+
+        //this.addWall();
     }
     update(time, delta) {
         //update all objects in gameObjects
@@ -76,5 +84,9 @@ class Play extends Phaser.Scene {
 
     playerCollide(){
 
+    }
+    addWall() {
+        var wall = new TextBox(this, 60, 240, "cash", 0, 10);
+        this.wallsGroup.add(wall);
     }
 }
