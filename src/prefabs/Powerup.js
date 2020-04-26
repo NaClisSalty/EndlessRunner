@@ -1,8 +1,27 @@
-class Powerup extends Phaser.GameObjects.Sprite{
-    constructor(scene, x, y, texture, frame, funct) {
+class Powerup extends Phaser.Physics.Arcade.Sprite{
+    constructor(scene, x, y, texture, frame, funct, antiFunct) {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
+        scene.physics.add.existing(this);
+        this.setCollideWorldBounds(true);
+        this.setImmovable(true);
+        this.setVelocityX(15);
+        //Store the effect of the powerup and how to undo it
         this.effect = funct;
+        this.endEffect = antiFunct;
+        //Need to store the scene to process activation
+        this.scene = scene;
+    }
+
+    //Activate the effects of the powerup on the player
+    activate(){
+        this.effect(this.scene.player);
+        this.scene.time.addEvent({
+            delay: 10000,
+            callback: this.endEffect(this.scene.player),
+        })
+        this.scene.spawnPowerup();
+        this.destroy();
     }
 
     /*
