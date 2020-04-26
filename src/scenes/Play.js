@@ -28,22 +28,34 @@ class Play extends Phaser.Scene {
         //game object arrays
         this.gameObjects = [];
 
-        //powerArray
+        //powerArray, contains all possible powerups/their effects
         this.powerAffects = [];
         this.powerAffects.push((player) => {player.setScale(2)});
         this.powerAffects.push((player) => {player.setScale(.5)});
         this.powerAffects.push((player) => {player.shieldValue = true});
-        this.powerAffects.push((player) => {player.kp+1000});
-        this.powerAffects.push((player) => {player.kp*.5});
-        this.powerAffects.push((player) => {});
+        this.powerAffects.push((player) => {player.kp+=1000});
+        this.powerAffects.push((player) => {player.kp*=.5});
+        this.powerAffects.push((player) => {player.kd *= 10});
 
+        //Every power needs a way to undo itself, this array stores those functions
+        this.powerEnd = [];
+        this.powerEnd.push((player) => {player.setScale(.5)});
+        this.powerEnd.push((player) => {player.setScale(2)});
+        this.powerEnd.push((player) => {player.shieldValue = false});
+        this.powerEnd.push((player) => {player.kp-=1000});
+        this.powerEnd.push((player) => {player.kp*= 2});
+        this.powerEnd.push((player) => {player.kd /= 10});
         //Make the player
         this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
         this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects].length));
         this.powerUpTest.effect(this.player);
+        //set up groups for powerups and barriers
         this.walls = this.add.group({
             runChildUpdate: true
         });
+        this.powerups = this.add.group({
+            runChildUpdate: true
+        })
     }
     update(time, delta) {
         //update all objects in gameObjects
@@ -62,7 +74,7 @@ class Play extends Phaser.Scene {
         }
         this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
         
-        this.physics.world.collide(this.player, this.walls, this.playerCollide, null, this);
+        this.physics.world.collide(this.player, this.walls, this.wallCollide, null, this);
     }
 
     _onFocus() {
@@ -74,7 +86,8 @@ class Play extends Phaser.Scene {
         console.log("Bye!")
     }
 
-    playerCollide(){
-
+    wallCollide(){
+        this.player.x = 60;
+        this.player.y = 240;
     }
 }
