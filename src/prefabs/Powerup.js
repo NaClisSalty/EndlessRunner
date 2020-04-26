@@ -7,6 +7,19 @@ class Powerup extends Phaser.GameObjects.Sprite{
         //Store the effect of the powerup and how to undo it
         this.effect = funct;
         this.endEffect = antiFunct;
+        //Need to store the scene to process activation
+        this.scene = scene;
+    }
+
+    //Activate the effects of the powerup on the player
+    activate(){
+        this.effect(this.scene.player);
+        this.scene.time.addEvent({
+            delay: 10000,
+            callback: antiFunct(this.scene.player),
+        })
+        this.scene.spawnPowerup();
+        this.destroy();
     }
 
     /*

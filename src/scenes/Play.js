@@ -94,6 +94,8 @@ class Play extends Phaser.Scene {
         this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
         
         this.physics.world.collide(this.player, this.walls, this.wallCollide, null, this);
+
+        this.physics.world.collide(this.player, this.powerups, this.powerCollide, null, this);
     }
 
     _onFocus() {
@@ -105,8 +107,14 @@ class Play extends Phaser.Scene {
         console.log("Bye!")
     }
 
-    wallCollide(){
+    wallCollide(playerObj, wall){
         this.player.x = 60;
         this.player.y = 240;
+    }
+
+    //This function only exists because we can't know what powerup the player hit in collision()
+    powerCollide(playerObj, powerup){
+        //Just make the powerup deal with it
+        powerup.activate();
     }
 }
