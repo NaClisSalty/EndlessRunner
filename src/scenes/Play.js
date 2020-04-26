@@ -48,12 +48,12 @@ class Play extends Phaser.Scene {
         
         //Stores list of corresponding names of images in the atlas to use for each powerup
         this.powerImages = [];
-        this.powerImages.push('plus.png');
-        this.powerImages.push('minus.png');
-        this.powerImages.push('at.png');
-        this.powerImages.push('forward_slash.png');
-        this.powerImages.push('back_slash.png');
-        this.powerImages.push('equals.png');
+        this.powerImages.push('plus');
+        this.powerImages.push('Minus');
+        this.powerImages.push('at');
+        this.powerImages.push('forward_slash');
+        this.powerImages.push('back_slash');
+        this.powerImages.push('Equals');
 
         //Make the player
         this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
@@ -73,9 +73,8 @@ class Play extends Phaser.Scene {
     spawnPowerup(){
         //Figure out what kind of powerup it is
         let effect = Math.floor(Math.random() * this.powerAffects.length);
-        console.log(effect)
         this.powerups.add(new Powerup(this, 640, Math.random() * 480, 
-                                        'images', this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],));
+                                        "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],));
     }
 
     update(time, delta) {
