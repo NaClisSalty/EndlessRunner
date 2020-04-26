@@ -57,8 +57,8 @@ class Play extends Phaser.Scene {
 
         //Make the player
         this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
-        this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects].length));
-        this.powerUpTest.effect(this.player);
+        //this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects.length]));
+        //this.powerUpTest.effect(this.player);
         //set up groups for powerups and barriers
         this.walls = this.add.group({
             runChildUpdate: true
@@ -70,7 +70,7 @@ class Play extends Phaser.Scene {
 
     spawnPowerup(){
         //Figure out what kind of powerup it is
-        let effect = Math.floor(this.powerAffects[Math.random() * this.powerAffects].length);
+        let effect = this.powerAffects[Math.floor(Math.random() * this.powerAffects.length)];
         this.powerups.add(new Powerup(this, 640, Math.random() * 480, 
                                         'images', this.powerImages[effect], this.powerAffects[effect],
                                         this.powerEnd[effect]));
