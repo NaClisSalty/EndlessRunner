@@ -45,6 +45,16 @@ class Play extends Phaser.Scene {
         this.powerEnd.push((player) => {player.kp-=1000});
         this.powerEnd.push((player) => {player.kp*= 2});
         this.powerEnd.push((player) => {player.kd /= 10});
+        
+        //Stores list of corresponding names of images in the atlas to use for each powerup
+        this.powerImages = [];
+        this.powerImages.push('plus.png');
+        this.powerImages.push('minus.png');
+        this.powerImages.push('at.png');
+        this.powerImages.push('forward_slash.png');
+        this.powerImages.push('back_slash.png');
+        this.powerImages.push('equals.png');
+
         //Make the player
         this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
         this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects].length));
@@ -57,6 +67,15 @@ class Play extends Phaser.Scene {
             runChildUpdate: true
         })
     }
+
+    spawnPowerup(){
+        //Figure out what kind of powerup it is
+        let effect = Math.floor(this.powerAffects[Math.random() * this.powerAffects].length);
+        this.powerups.add(new Powerup(this, 640, Math.random() * 480, 
+                                        'images', this.powerImages[effect], this.powerAffects[effect],
+                                        this.powerEnd[effect]));
+    }
+
     update(time, delta) {
         //update all objects in gameObjects
         this.gameObjects.forEach(function(obj) {
