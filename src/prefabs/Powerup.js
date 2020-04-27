@@ -75,6 +75,10 @@ class Powerup extends Phaser.Physics.Arcade.Sprite{
     update(){
         //speed for upgrades
         //this.x -= game.settings.powerSpeed;
+        if (this.x <40){
+            this.scene.spawnPowerup();
+            this.destroy();
+        }
     }
 
     checkPower(){
