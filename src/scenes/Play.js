@@ -73,8 +73,8 @@ class Play extends Phaser.Scene {
     spawnPowerup(){
         //Figure out what kind of powerup it is
         let effect = Math.floor(Math.random() * this.powerAffects.length);
-        this.powerups.add(new Powerup(this, 640, Math.random() * 480, 
-                                        "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],));
+        this.powerups.add(new Powerup(this, 600, Math.random() * 480, 
+                                        "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],).setOrigin(0));
     }
 
     update(time, delta) {
