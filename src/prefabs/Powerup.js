@@ -13,12 +13,14 @@ class Powerup extends Phaser.Physics.Arcade.Sprite{
         this.scene = scene;
     }
 
-    //Activate the effects of the powerup on the player
+    //Resolve powerup collision with player
     activate(){
+        //Activate the effects of the powerup on the player
         this.effect(this.scene.player);
+        //Turn it off later
         this.scene.time.delayedCall(10000, this.endEffect, [this.scene.player], this);
-        this.scene.spawnPowerup();
-        this.destroy();
+        //Get rid of this powerup
+        this.scene.powerups.remove(this, false, true);
     }
 
     /*

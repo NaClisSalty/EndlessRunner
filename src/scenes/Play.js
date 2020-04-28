@@ -66,8 +66,9 @@ class Play extends Phaser.Scene {
         this.powerups = this.add.group({
             runChildUpdate: true
         })
-
+        //Spawn the first powerup and start the timer for the next one to spawn
         this.spawnPowerup();
+        this.powerupTimer = 0;
     }
 
     spawnPowerup(){
@@ -97,6 +98,13 @@ class Play extends Phaser.Scene {
         this.physics.world.collide(this.player, this.walls, this.wallCollide, null, this);
 
         this.physics.world.collide(this.player, this.powerups, this.powerCollide, null, this);
+
+        //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
+        this.powerupTimer += delta;
+        if(this.powerupTimer >= 10000){
+            this.powerupTimer = 0;
+            this.spawnPowerup();
+        }
     }
 
     _onFocus() {
