@@ -75,7 +75,7 @@ class Play extends Phaser.Scene {
             runChildUpdate: true
         })
         //Spawn the first enemy and init the timer to spawn more
-        this.spawnTextBox()
+        this.spawnTextBlock()
         this.enemyTimer = 0;
     }
 
@@ -86,9 +86,12 @@ class Play extends Phaser.Scene {
                                         "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],).setOrigin(0));
     }
 
-    spawnTextBox(){
-        this.enemies.add(new TextBox(this, 600, Math.random() * 480, 
-                                        "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],).setOrigin(0));
+    spawnTextBlock(){
+        let newTextBlock = new TextBox(this, 600, Math.random() * 480, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
+        //newTextBlock.width = Phaser.Math.Between(40, 60);
+        //newTextBlock.height = Phaser.Math.Between(40, 60);
+        newTextBlock.setDisplaySize(Phaser.Math.Between(50, 200),Phaser.Math.Between(50, 200));
+        this.enemies.add(newTextBlock);
     }
 
     update(time, delta) {
@@ -113,16 +116,18 @@ class Play extends Phaser.Scene {
 
         this.physics.world.collide(this.player, this.powerups, this.powerCollide, null, this);
 
-        //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
-        this.powerupTimer += delta;
-        if(this.powerupTimer >= 3000){
-            this.powerupTimer = 0;
-            this.spawnPowerup();
-        }
+        this.physics.world.collide(this.player, this.enemies, this.enemyCollide, null, this);
+
         this.enemyTimer+= delta;
         if(this.enemyTimer >= 3000){
             this.enemyTimer = 0;
-            this.spawnTextBox();
+            this.spawnTextBlock();
+        }
+        //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
+        this.powerupTimer += delta;
+        if(this.powerupTimer >= 5000){
+            this.powerupTimer = 0;
+            this.spawnPowerup();
         }
     }
 
@@ -144,5 +149,10 @@ class Play extends Phaser.Scene {
     powerCollide(playerObj, powerup){
         //Just make the powerup deal with it
         powerup.activate();
+    }
+    enemyCollide(playerObj, enemy){
+        //Just make the powerup deal with it
+        this.enemies.remove(enemy, false, true);
+        console.log("You died!")
     }
 }
