@@ -56,13 +56,8 @@ class Play extends Phaser.Scene {
         this.powerImages.push('Equals');
 
         //Make the player
-        this.player = new Player(this, 60, 240, "player", 0, this.movementStyle)//.setOrigin(0);
-        //this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects.length]));
-        //this.powerUpTest.effect(this.player);
+        this.player = new Player(this, 60, 240, "player", 0, this.movementStyle);
         //set up groups for powerups and barriers
-        this.walls = this.add.group({
-            runChildUpdate: true
-        });
         this.powerups = this.add.group({
             runChildUpdate: true
         })
@@ -82,7 +77,7 @@ class Play extends Phaser.Scene {
     spawnPowerup(){
         //Figure out what kind of powerup it is
         let effect = Math.floor(Math.random() * this.powerAffects.length);
-        this.powerups.add(new Powerup(this, 600, Math.random() * 480, 
+        this.powerups.add(new Powerup(this, 600, Math.random() * 430 + 25, 
                                         "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],).setOrigin(0));
     }
 
@@ -141,12 +136,6 @@ class Play extends Phaser.Scene {
         this.paused = true;
         console.log("Bye!")
     }
-
-    wallCollide(playerObj, wall){
-        this.player.x = 60;
-        this.player.y = 240;
-    }
-
     //This function only exists because we can't know what powerup the player hit in collision()
     powerCollide(playerObj, powerup){
         //Just make the powerup deal with it
