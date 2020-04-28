@@ -35,7 +35,7 @@ class Play extends Phaser.Scene {
         this.powerAffects.push((player) => {player.shieldValue = true});
         this.powerAffects.push((player) => {player.kp+=1000});
         this.powerAffects.push((player) => {player.kp*=.5});
-        this.powerAffects.push((player) => {player.kd *= 10});
+        this.powerAffects.push((player) => {player.kd =15000});
 
         //Every power needs a way to undo itself, this array stores those functions
         this.powerEnd = [];
@@ -44,7 +44,7 @@ class Play extends Phaser.Scene {
         this.powerEnd.push((player) => {player.shieldValue = false});
         this.powerEnd.push((player) => {player.kp-=1000});
         this.powerEnd.push((player) => {player.kp*= 2});
-        this.powerEnd.push((player) => {player.kd /= 10});
+        this.powerEnd.push((player) => {player.kd =7000});
         
         //Stores list of corresponding names of images in the atlas to use for each powerup
         this.powerImages = [];
