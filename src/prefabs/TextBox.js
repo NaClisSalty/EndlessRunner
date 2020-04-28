@@ -16,6 +16,3 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
         }
     }
 }
-
-
-

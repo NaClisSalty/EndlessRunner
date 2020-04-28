@@ -5,6 +5,8 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         scene.physics.add.existing(this);
         this.setCollideWorldBounds(true);
         this.setImmovable(true);
+        //did we die!
+        this.dead = false;
         //Pid controller stuff for movement/mouse tracking
         //Abandon hope, all ye who seek to understand this without outside knowledge
         //Credit for implementation goes to Feedback Control for Computer Systems

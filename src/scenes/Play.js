@@ -88,8 +88,7 @@ class Play extends Phaser.Scene {
 
     spawnTextBlock(){
         let newTextBlock = new TextBox(this, 600, Math.random() * 480, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
-        //newTextBlock.width = Phaser.Math.Between(40, 60);
-        //newTextBlock.height = Phaser.Math.Between(40, 60);
+        //lets resize them so they dont take up 80% of the sceen
         newTextBlock.setDisplaySize(Phaser.Math.Between(50, 200),Phaser.Math.Between(50, 200));
         this.enemies.add(newTextBlock);
     }
@@ -110,24 +109,27 @@ class Play extends Phaser.Scene {
         //             obj.x,obj.y,obj.width,obj.height));
         //     },this);
         // }
-        this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
-        
-        this.physics.world.collide(this.player, this.walls, this.wallCollide, null, this);
+        if (!this.player.dead) {
+            this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
+            
+            this.physics.world.collide(this.player, this.walls, this.wallCollide, null, this);
 
-        this.physics.world.collide(this.player, this.powerups, this.powerCollide, null, this);
+            this.physics.world.collide(this.player, this.powerups, this.powerCollide, null, this);
 
-        this.physics.world.collide(this.player, this.enemies, this.enemyCollide, null, this);
+            this.physics.world.collide(this.player, this.enemies, this.enemyCollide, null, this);
 
-        this.enemyTimer+= delta;
-        if(this.enemyTimer >= 3000){
-            this.enemyTimer = 0;
-            this.spawnTextBlock();
-        }
-        //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
-        this.powerupTimer += delta;
-        if(this.powerupTimer >= 5000){
-            this.powerupTimer = 0;
-            this.spawnPowerup();
+            //timer for spawning the baddies
+            this.enemyTimer+= delta;
+            if(this.enemyTimer >= 3000){
+                this.spawnTextBlock();
+                this.enemyTimer = 0;
+            }
+            //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
+            this.powerupTimer += delta;
+            if(this.powerupTimer >= 5000){
+                this.powerupTimer = 0;
+                this.spawnPowerup();
+            }
         }
     }
 
@@ -154,5 +156,9 @@ class Play extends Phaser.Scene {
         //Just make the powerup deal with it
         this.enemies.remove(enemy, false, true);
         console.log("You died!")
+        this.player.dead = true;
+        this.player.destroy();
+        this.enemies.clear();
+        this.powerups.clear();
     }
 }
