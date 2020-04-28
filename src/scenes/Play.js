@@ -3,7 +3,7 @@ class Play extends Phaser.Scene {
         super("playScene");
     }
     init(data){
-
+        this.movementStyle = data.move;
     }
 
     preload() {
@@ -56,7 +56,7 @@ class Play extends Phaser.Scene {
         this.powerImages.push('Equals');
 
         //Make the player
-        this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
+        this.player = new Player(this, 60, 240, "player", 0, this.movementStyle)//.setOrigin(0);
         //this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects.length]));
         //this.powerUpTest.effect(this.player);
         //set up groups for powerups and barriers
