@@ -33,7 +33,7 @@ class Play extends Phaser.Scene {
         this.powerAffects.push((player) => {player.setScale(2)});
         this.powerAffects.push((player) => {player.setScale(.5)});
         this.powerAffects.push((player) => {player.shieldValue = true});
-        this.powerAffects.push((player) => {player.kp+=1000});
+        this.powerAffects.push((player) => {player.kp *= 2});
         this.powerAffects.push((player) => {player.kp*=.5});
         this.powerAffects.push((player) => {player.kd =15000});
 
@@ -42,7 +42,7 @@ class Play extends Phaser.Scene {
         this.powerEnd.push((player) => {player.setScale(1)});
         this.powerEnd.push((player) => {player.setScale(1)});
         this.powerEnd.push((player) => {player.shieldValue = false});
-        this.powerEnd.push((player) => {player.kp-=1000});
+        this.powerEnd.push((player) => {player.kp/= 2});
         this.powerEnd.push((player) => {player.kp*= 2});
         this.powerEnd.push((player) => {player.kd =7000});
         
