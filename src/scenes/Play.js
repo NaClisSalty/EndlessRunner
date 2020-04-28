@@ -39,8 +39,8 @@ class Play extends Phaser.Scene {
 
         //Every power needs a way to undo itself, this array stores those functions
         this.powerEnd = [];
-        this.powerEnd.push((player) => {player.setScale(.5)});
-        this.powerEnd.push((player) => {player.setScale(2)});
+        this.powerEnd.push((player) => {player.setScale(1)});
+        this.powerEnd.push((player) => {player.setScale(1)});
         this.powerEnd.push((player) => {player.shieldValue = false});
         this.powerEnd.push((player) => {player.kp-=1000});
         this.powerEnd.push((player) => {player.kp*= 2});
