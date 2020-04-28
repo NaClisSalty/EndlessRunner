@@ -69,6 +69,14 @@ class Play extends Phaser.Scene {
         //Spawn the first powerup and start the timer for the next one to spawn
         this.spawnPowerup();
         this.powerupTimer = 0;
+
+        //group for text boxes
+        this.enemies = this.add.group({
+            runChildUpdate: true
+        })
+        //Spawn the first enemy and init the timer to spawn more
+        this.spawnTextBox()
+        this.enemyTimer = 0;
     }
 
     spawnPowerup(){
@@ -78,21 +86,27 @@ class Play extends Phaser.Scene {
                                         "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],).setOrigin(0));
     }
 
+    spawnTextBox(){
+        this.enemies.add(new TextBox(this, 600, Math.random() * 480, 
+                                        "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],).setOrigin(0));
+    }
+
     update(time, delta) {
+        //console.log(this.powerupTimer);
         //update all objects in gameObjects
-        this.gameObjects.forEach(function(obj) {
-            obj.update();
-        },this);
+        // this.gameObjects.forEach(function(obj) {
+        //     obj.update();
+        // },this);
         //if enabled outline all gameObjects
         //useful for seeing hitbox or completely transparent objects
-        if (this.debugmode) {
-            this.renderdebug.clear();
-            this.gameObjects.forEach(function(obj){
-                this.renderdebug.lineStyle(3, 0xfacade);
-                this.renderdebug.strokeRectShape(new Phaser.Geom.Rectangle(
-                    obj.x,obj.y,obj.width,obj.height));
-            },this);
-        }
+        // if (this.debugmode) {
+        //     this.renderdebug.clear();
+        //     this.gameObjects.forEach(function(obj){
+        //         this.renderdebug.lineStyle(3, 0xfacade);
+        //         this.renderdebug.strokeRectShape(new Phaser.Geom.Rectangle(
+        //             obj.x,obj.y,obj.width,obj.height));
+        //     },this);
+        // }
         this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
         
         this.physics.world.collide(this.player, this.walls, this.wallCollide, null, this);
@@ -101,9 +115,14 @@ class Play extends Phaser.Scene {
 
         //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
         this.powerupTimer += delta;
-        if(this.powerupTimer >= 10000){
+        if(this.powerupTimer >= 3000){
             this.powerupTimer = 0;
             this.spawnPowerup();
+        }
+        this.enemyTimer+= delta;
+        if(this.enemyTimer >= 3000){
+            this.enemyTimer = 0;
+            this.spawnTextBox();
         }
     }
 
