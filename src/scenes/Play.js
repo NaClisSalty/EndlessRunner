@@ -28,30 +28,34 @@ class Play extends Phaser.Scene {
         //game object arrays
         this.gameObjects = [];
 
-        //powerArray
+        //powerArray, contains all possible powerups/their effects
         this.powerAffects = [];
         this.powerAffects.push((player) => {player.setScale(2)});
         this.powerAffects.push((player) => {player.setScale(.5)});
         this.powerAffects.push((player) => {player.shieldValue = true});
-        this.powerAffects.push((player) => {player.kp+10});
-        this.powerAffects.push((player) => {player.kp*.5});
-        this.powerAffects.push(function(player) {console.log("test!")});
-        this.powerAffects.push(function(player) {player.setScale(2);return true});
+        this.powerAffects.push((player) => {player.kp+=1000});
+        this.powerAffects.push((player) => {player.kp*=.5});
+        this.powerAffects.push((player) => {player.kd *= 10});
 
-
+        //Every power needs a way to undo itself, this array stores those functions
+        this.powerEnd = [];
+        this.powerEnd.push((player) => {player.setScale(.5)});
+        this.powerEnd.push((player) => {player.setScale(2)});
+        this.powerEnd.push((player) => {player.shieldValue = false});
+        this.powerEnd.push((player) => {player.kp-=1000});
+        this.powerEnd.push((player) => {player.kp*= 2});
+        this.powerEnd.push((player) => {player.kd /= 10});
         //Make the player
         this.player = new Player(this, 60, 240, "player", 0, true)//.setOrigin(0);
-        var rand = 6;//Math.floor(Math.random() * this.powerAffects.length-1);
-        //this.powerUpTest = new Powerup(this, 400, 300, "cash", 0, this.powerAffects[rand]);
-        
-        //this.powerUpTest.effect(this.player);
-        //console.log(this.testPowerSprite.effect);
-        //this.testPowerSprite.effect();
-        this.wallsGroup = this.add.group({
+        this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects].length));
+        this.powerUpTest.effect(this.player);
+        //set up groups for powerups and barriers
+        this.walls = this.add.group({
             runChildUpdate: true
         });
-
-        //this.addWall();
+        this.powerups = this.add.group({
+            runChildUpdate: true
+        })
     }
     update(time, delta) {
         //update all objects in gameObjects
@@ -70,7 +74,7 @@ class Play extends Phaser.Scene {
         }
         this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
         
-        this.physics.world.collide(this.player, this.walls, this.playerCollide, null, this);
+        this.physics.world.collide(this.player, this.walls, this.wallCollide, null, this);
     }
 
     _onFocus() {
@@ -82,8 +86,9 @@ class Play extends Phaser.Scene {
         console.log("Bye!")
     }
 
-    playerCollide(){
-
+    wallCollide(){
+        this.player.x = 60;
+        this.player.y = 240;
     }
     addWall() {
         var wall = new TextBox(this, 60, 240, "cash", 0, 10);
