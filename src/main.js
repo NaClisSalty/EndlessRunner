@@ -1,3 +1,8 @@
+//music credit to: 
+//https://freesound.org/people/DDmyzik/sounds/496423/
+//https://freesound.org/people/waveplay./sounds/222474/
+//https://freesound.org/people/Disquantic/sounds/474934/
+//https://freesound.org/people/djgriffin/sounds/21157/
 //name:
 //CMPM 120
 //Ian Monahan
