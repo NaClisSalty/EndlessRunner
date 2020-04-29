@@ -7,6 +7,11 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
+        //preload 4 diff music options
+        this.load.audio('music1', './assets/music1.wav');
+        this.load.audio('music2', './assets/music2.wav');
+        this.load.audio('music3', './assets/music3.wav');
+        this.load.audio('music4', './assets/music4.wav');
     } 
 
     create() {
@@ -72,6 +77,30 @@ class Play extends Phaser.Scene {
         //Spawn the first enemy and init the timer to spawn more
         this.spawnTextBlock()
         this.enemyTimer = 0;
+
+        //starts to play music
+        //initalizes music tracks
+        let music1 =0;
+        let music2 =0;
+        let music3 =0;
+        let music4 =0;
+
+        this.music1 = this.sound.add('music1');
+        music1.setLoop(true);
+        this.music1.play();
+
+        this.music2 = this.sound.add('music2');
+        music2.setLoop(true);
+        //this.music2.play();
+
+        this.music3 = this.sound.add('music3');
+        music3.setLoop(true);
+        //this.music3.play();
+
+        this.music4 = this.sound.add('music4');
+        music4.setLoop(true);
+        //this.music4.play();
+
     }
 
     spawnPowerup(){
