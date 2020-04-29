@@ -84,9 +84,10 @@ class Play extends Phaser.Scene {
         let music2 =0;
         let music3 =0;
         let music4 =0;
-
+        //the looping breaks the game movement somehow
+        //
         this.music1 = this.sound.add('music1');
-        music1.setLoop(true);
+        //music1.setLoop(true);
         this.music1.play();
         /*
         this.music2 = this.sound.add('music2');
