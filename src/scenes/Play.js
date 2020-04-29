@@ -33,7 +33,7 @@ class Play extends Phaser.Scene {
         this.powerAffects.push((player) => {player.setScale(2)});
         this.powerAffects.push((player) => {player.setScale(.5)});
         this.powerAffects.push((player) => {player.shieldValue = true});
-        this.powerAffects.push((player) => {player.kp+=1000});
+        this.powerAffects.push((player) => {player.kp *= 2});
         this.powerAffects.push((player) => {player.kp*=.5});
         this.powerAffects.push((player) => {player.kd =15000});
 
@@ -42,7 +42,7 @@ class Play extends Phaser.Scene {
         this.powerEnd.push((player) => {player.setScale(1)});
         this.powerEnd.push((player) => {player.setScale(1)});
         this.powerEnd.push((player) => {player.shieldValue = false});
-        this.powerEnd.push((player) => {player.kp-=1000});
+        this.powerEnd.push((player) => {player.kp/= 2});
         this.powerEnd.push((player) => {player.kp*= 2});
         this.powerEnd.push((player) => {player.kd =7000});
         
@@ -56,47 +56,76 @@ class Play extends Phaser.Scene {
         this.powerImages.push('Equals');
 
         //Make the player
-        this.player = new Player(this, 60, 240, "player", 0, this.movementStyle)//.setOrigin(0);
-        //this.powerUpTest = new Powerup(this, 400, 300, "player", 0, Math.floor(this.powerAffects[Math.random() * this.powerAffects.length]));
-        //this.powerUpTest.effect(this.player);
+        this.player = new Player(this, 60, 240, "player", 0, this.movementStyle);
         //set up groups for powerups and barriers
-        this.walls = this.add.group({
-            runChildUpdate: true
-        });
         this.powerups = this.add.group({
             runChildUpdate: true
         })
-
+        //Spawn the first powerup and start the timer for the next one to spawn
         this.spawnPowerup();
+        this.powerupTimer = 0;
+
+        //group for text boxes
+        this.enemies = this.add.group({
+            runChildUpdate: true
+        })
+        //Spawn the first enemy and init the timer to spawn more
+        this.spawnTextBlock()
+        this.enemyTimer = 0;
     }
 
     spawnPowerup(){
         //Figure out what kind of powerup it is
         let effect = Math.floor(Math.random() * this.powerAffects.length);
-        this.powerups.add(new Powerup(this, 600, Math.random() * 480, 
+        this.powerups.add(new Powerup(this, 600, Math.random() * 430 + 25, 
                                         "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],).setOrigin(0));
     }
 
+    spawnTextBlock(){
+        let newTextBlock = new TextBox(this, 600, Math.random() * 480, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
+        //lets resize them so they dont take up 80% of the sceen
+        newTextBlock.setDisplaySize(Phaser.Math.Between(50, 200),Phaser.Math.Between(50, 200));
+        this.enemies.add(newTextBlock);
+    }
+
     update(time, delta) {
+        //console.log(this.powerupTimer);
         //update all objects in gameObjects
-        this.gameObjects.forEach(function(obj) {
-            obj.update();
-        },this);
+        // this.gameObjects.forEach(function(obj) {
+        //     obj.update();
+        // },this);
         //if enabled outline all gameObjects
         //useful for seeing hitbox or completely transparent objects
-        if (this.debugmode) {
-            this.renderdebug.clear();
-            this.gameObjects.forEach(function(obj){
-                this.renderdebug.lineStyle(3, 0xfacade);
-                this.renderdebug.strokeRectShape(new Phaser.Geom.Rectangle(
-                    obj.x,obj.y,obj.width,obj.height));
-            },this);
-        }
-        this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
-        
-        this.physics.world.collide(this.player, this.walls, this.wallCollide, null, this);
+        // if (this.debugmode) {
+        //     this.renderdebug.clear();
+        //     this.gameObjects.forEach(function(obj){
+        //         this.renderdebug.lineStyle(3, 0xfacade);
+        //         this.renderdebug.strokeRectShape(new Phaser.Geom.Rectangle(
+        //             obj.x,obj.y,obj.width,obj.height));
+        //     },this);
+        // }
+        if (!this.player.dead) {
+            this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
+            
+            this.physics.world.collide(this.player, this.walls, this.wallCollide, null, this);
 
-        this.physics.world.collide(this.player, this.powerups, this.powerCollide, null, this);
+            this.physics.world.collide(this.player, this.powerups, this.powerCollide, null, this);
+
+            this.physics.world.collide(this.player, this.enemies, this.enemyCollide, null, this);
+
+            //timer for spawning the baddies
+            this.enemyTimer+= delta;
+            if(this.enemyTimer >= 3000){
+                this.spawnTextBlock();
+                this.enemyTimer = 0;
+            }
+            //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
+            this.powerupTimer += delta;
+            if(this.powerupTimer >= 5000){
+                this.powerupTimer = 0;
+                this.spawnPowerup();
+            }
+        }
     }
 
     _onFocus() {
@@ -107,15 +136,18 @@ class Play extends Phaser.Scene {
         this.paused = true;
         console.log("Bye!")
     }
-
-    wallCollide(playerObj, wall){
-        this.player.x = 60;
-        this.player.y = 240;
-    }
-
     //This function only exists because we can't know what powerup the player hit in collision()
     powerCollide(playerObj, powerup){
         //Just make the powerup deal with it
         powerup.activate();
+    }
+    enemyCollide(playerObj, enemy){
+        //Just make the powerup deal with it
+        this.enemies.remove(enemy, false, true);
+        console.log("You died!")
+        this.player.dead = true;
+        this.player.destroy();
+        this.enemies.clear();
+        this.powerups.clear();
     }
 }

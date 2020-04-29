@@ -9,6 +9,7 @@ class Menu extends Phaser.Scene {
         this.load.path = './Assets/'
         this.load.image("player","PlayerPlaceholder.png");
         this.load.atlas("images", "typeObjects.png", "sprites.json");
+        this.load.image("textBlock","text_block_01.PNG");
     }
 
     create() {
