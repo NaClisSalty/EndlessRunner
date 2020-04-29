@@ -3,6 +3,13 @@
 //https://freesound.org/people/waveplay./sounds/222474/
 //https://freesound.org/people/Disquantic/sounds/474934/
 //https://freesound.org/people/djgriffin/sounds/21157/
+
+//sound credit to:
+//https://freesound.org/people/Soughtaftersounds/sounds/145461/
+//https://freesound.org/people/waveplay./sounds/384843/
+//https://freesound.org/people/bean%20jamin/sounds/416923/
+//https://freesound.org/people/murkertrer/sounds/395444/
+//https://freesound.org/people/MATTIX/sounds/453137/
 //name:
 //CMPM 120
 //Ian Monahan
