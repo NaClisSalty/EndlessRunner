@@ -88,7 +88,7 @@ class Play extends Phaser.Scene {
         this.music1 = this.sound.add('music1');
         music1.setLoop(true);
         this.music1.play();
-
+        /*
         this.music2 = this.sound.add('music2');
         music2.setLoop(true);
         //this.music2.play();
@@ -100,6 +100,7 @@ class Play extends Phaser.Scene {
         this.music4 = this.sound.add('music4');
         music4.setLoop(true);
         //this.music4.play();
+            */
 
     }
 
