@@ -88,6 +88,7 @@ class Play extends Phaser.Scene {
         this.music1 = this.sound.add('music1', {loop: true});
         //music1.setLoop(true);
         this.music1.play();
+        //comment to test merge
         /*
         this.music2 = this.sound.add('music2');
         music2.setLoop(true);
