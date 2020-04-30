@@ -8,10 +8,11 @@ class Play extends Phaser.Scene {
 
     preload() {
         //preload 4 diff music options
-        this.load.audio('music1', './assets/music1.wav');
-        this.load.audio('music2', './assets/music2.wav');
-        this.load.audio('music3', './assets/music3.wav');
-        this.load.audio('music4', './assets/music4.wav');
+        this.load.path = './Assets/'
+        this.load.audio('music1', '.music1.wav');
+        this.load.audio('music2', '.music2.wav');
+        this.load.audio('music3', '.music3.wav');
+        this.load.audio('music4', '.music4.wav');
         //atlas for glitch sprite
         this.load.atlas('glitch1', 'glitchText.png', 'glitchText.json');
     } 
