@@ -113,7 +113,7 @@ class Play extends Phaser.Scene {
     }
 
     spawnTextBlock(){
-        let newTextBlock = new TextBox(this, 600, Math.random() * 480, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
+        let newTextBlock = new TextBox(this, 600, Math.random() * 430 + 25, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
         //lets resize them so they dont take up 80% of the sceen
         newTextBlock.setDisplaySize(Phaser.Math.Between(50, 200),Phaser.Math.Between(50, 200));
         this.enemies.add(newTextBlock);
@@ -173,12 +173,15 @@ class Play extends Phaser.Scene {
         powerup.activate();
     }
     enemyCollide(playerObj, enemy){
-        //Just make the powerup deal with it
         this.enemies.remove(enemy, false, true);
-        console.log("You died!")
-        this.player.dead = true;
-        this.player.destroy();
-        this.enemies.clear();
-        this.powerups.clear();
+        if(!this.player.shieldValue){
+            console.log("You died!")
+            this.player.dead = true;
+            this.player.destroy();
+            this.enemies.clear(true, true);   
+            this.powerups.clear(true, true);
+        }
+        else
+            this.player.shieldValue = false;
     }
 }

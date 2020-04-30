@@ -23,6 +23,10 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             this.xi = 0; //tracks cumulative error
             this.xprior = 0; //Tracks previous error
         }
+
+        //Add the (invisible when inactive) shield
+        this.shieldBody = scene.add.circle(this.x, this.y, 128).setStrokeStyle(4, 0x0000FF);
+        this.shieldBody.setAlpha(0);
     }
 
     update(mouseX, mouseY, dT){
@@ -34,6 +38,16 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         let d = (difference - this.prior)/dT;
         this.prior = difference;
 
+        //If we have a shield, and it's not visible, make it visible
+        if(this.shieldValue && this.shieldBody.alpha == 0)
+            this.shieldBody.setAlpha(1);
+        //If we no longer have a shield but the body is still showing, make it invisible
+        if(!this.shieldValue && this.shieldBody.alpha == 1)
+            this.shieldBody.setAlpha(0);
+
+        //Then make the shield follow the player regardless
+        this.shieldBody.x = this.x;
+        this.shieldBody.y = this.y;
         this.setAccelerationY(this.kp * difference + this.ki * this.i + d * this.kd);
         if(this.moveDimensions){
             //Need to know the error/difference a lot, so just define it
