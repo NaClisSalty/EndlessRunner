@@ -25,7 +25,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         }
 
         //Add the (invisible when inactive) shield
-        this.shieldBody = scene.add.circle(this.x, this.y, 128).setStrokeStyle(4, 0x0000FF);
+        this.shieldBody = scene.add.circle(this.x, this.y, 16).setStrokeStyle(2, 0x0000FF);
         this.shieldBody.setAlpha(0);
     }
 
