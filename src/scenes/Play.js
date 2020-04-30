@@ -21,7 +21,9 @@ class Play extends Phaser.Scene {
         //glitch animation
         this.anims.create({key: 'glitchAnim', frames: 
         this.anims.generateFrameNames('glitch1', 
-        { prefix: 'textBlock', end: 4}), repeat: -1}).msPerFrame =100;
+        { prefix: 'textBlock', end: 4}), 
+        frameRate:10,
+        repeat: -1});
 
         
 
