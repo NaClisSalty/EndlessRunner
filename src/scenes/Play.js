@@ -9,10 +9,10 @@ class Play extends Phaser.Scene {
     preload() {
         //preload 4 diff music options
         this.load.path = './Assets/'
-        this.load.audio('music1', '.music1.wav');
-        this.load.audio('music2', '.music2.wav');
-        this.load.audio('music3', '.music3.wav');
-        this.load.audio('music4', '.music4.wav');
+        this.load.audio('music1', 'music1.wav');
+        this.load.audio('music2', 'music2.wav');
+        this.load.audio('music3', 'music3.wav');
+        this.load.audio('music4', 'music4.wav');
         //atlas for glitch sprite
         this.load.atlas('glitch1', 'glitchText.png', 'glitchText.json');
     } 
@@ -20,7 +20,7 @@ class Play extends Phaser.Scene {
     create() {
 
         this.anims.create({key: 'glitchAnim', frames: this.anims.generateFrameNames('glitch1', { prefix: 'textBlock', end: 4}), repeat: -1});
-        this.add.sprite(200,200, 'glitch1');
+        this.add.sprite(200,200, 'glitch1').play('glitchAnims');
         //add onBlur and onFocus
         game.events.addListener(Phaser.Core.Events.FOCUS, this._onFocus, this);
         game.events.addListener(Phaser.Core.Events.BLUR, this._onBlur, this);
