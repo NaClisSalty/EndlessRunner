@@ -38,7 +38,7 @@ class Play extends Phaser.Scene {
         game.events.addListener(Phaser.Core.Events.BLUR, this._onBlur, this);
 
         //create tilesprite
-        //this.tile = this.add.tileSprite(0,0, 1437, 1447, 'tile').setOrigin(0,0);
+        this.tile = this.add.tileSprite(0,0, 1437, 1447, 'tile').setOrigin(0,0);
 
 
         //define mouse
@@ -144,11 +144,11 @@ class Play extends Phaser.Scene {
     update(time, delta) {
 
         //tile spritemovement
-        //this.tile.tilePositionX -=4;
-       // this.tile.tilePositionY -=4
+        this.tile.tilePositionX -=4;
+        this.tile.tilePositionY -=4
 
 
-       
+
         //console.log(this.powerupTimer);
         //update all objects in gameObjects
         // this.gameObjects.forEach(function(obj) {
