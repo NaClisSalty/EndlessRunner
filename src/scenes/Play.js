@@ -37,6 +37,10 @@ class Play extends Phaser.Scene {
         game.events.addListener(Phaser.Core.Events.FOCUS, this._onFocus, this);
         game.events.addListener(Phaser.Core.Events.BLUR, this._onBlur, this);
 
+        //Code to speed up objects as game goes on
+        //Need to track time since start
+        this.speedUpFactor = 0;
+
         //create tilesprite
         //this.tile = this.add.tileSprite(0,0, 1437, 1447, 'tile').setOrigin(0,0);
 
@@ -125,9 +129,7 @@ class Play extends Phaser.Scene {
         //this.music4.play();
             */
 
-        //Code to speed up objects as game goes on
-        //Need to track time since start
-        this.speedUpFactor = 0;
+        
     }
 
     spawnPowerup(){
