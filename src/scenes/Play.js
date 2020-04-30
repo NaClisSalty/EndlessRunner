@@ -31,7 +31,7 @@ class Play extends Phaser.Scene {
 
         
 
-        this.add.sprite(200,200, 'glitch1').play('glitchAnim');
+        //this.add.sprite(200,200, 'glitch1').play('glitchAnim');
         //add onBlur and onFocus
         //*/
         game.events.addListener(Phaser.Core.Events.FOCUS, this._onFocus, this);
@@ -125,6 +125,9 @@ class Play extends Phaser.Scene {
         //this.music4.play();
             */
 
+        //Code to speed up objects as game goes on
+        //Need to track time since start
+        this.speedUpFactor = 0;
     }
 
     spawnPowerup(){
@@ -142,7 +145,8 @@ class Play extends Phaser.Scene {
     }
 
     update(time, delta) {
-
+        //Increase the time since the game started
+        this.speedUpFactor += delta;
         //tile spritemovement
         //this.tile.tilePositionX -=4;
         //this.tile.tilePositionY -=4

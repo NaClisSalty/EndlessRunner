@@ -8,7 +8,7 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
         scene.physics.add.existing(this);
         this.setImmovable(true);
         //speed
-        this.setVelocityX(-125);
+        this.setVelocityX(-125 - (scene.speedUpFactor * 0.005));
     }
     update(){
         if (this.x <40){
