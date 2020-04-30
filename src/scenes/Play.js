@@ -15,9 +15,13 @@ class Play extends Phaser.Scene {
         this.load.audio('music4', 'music4.wav');
         //atlas for glitch sprite
         this.load.atlas('glitch1', 'glitchText.png', 'glitchText.json');
+
+        //tile sprite image
+        //this.load.image('tile', 'tileSprite1.png');
     } 
 
     create() {
+        ///*
         //glitch animation
         this.anims.create({key: 'glitchAnim', frames: 
         this.anims.generateFrameNames('glitch1', 
@@ -29,8 +33,13 @@ class Play extends Phaser.Scene {
 
         this.add.sprite(200,200, 'glitch1').play('glitchAnim');
         //add onBlur and onFocus
+        //*/
         game.events.addListener(Phaser.Core.Events.FOCUS, this._onFocus, this);
         game.events.addListener(Phaser.Core.Events.BLUR, this._onBlur, this);
+
+        //create tilesprite
+        //this.tile = this.add.tileSprite(0,0, 1437, 1447, 'tile').setOrigin(0,0);
+
 
         //define mouse
         game.input.mouse.capture = true;
@@ -133,6 +142,13 @@ class Play extends Phaser.Scene {
     }
 
     update(time, delta) {
+
+        //tile spritemovement
+        //this.tile.tilePositionX -=4;
+        //this.tile.tilePositionY -=4
+
+
+
         //console.log(this.powerupTimer);
         //update all objects in gameObjects
         // this.gameObjects.forEach(function(obj) {
