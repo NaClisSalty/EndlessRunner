@@ -20,7 +20,7 @@ class Play extends Phaser.Scene {
     create() {
 
         this.anims.create({key: 'glitchAnim', frames: this.anims.generateFrameNames('glitch1', { prefix: 'textBlock', end: 4}), repeat: -1});
-        this.add.sprite(200,200, 'glitch1');
+        this.add.sprite(200,200, 'glitch1').play('glitchAnim');
         //add onBlur and onFocus
         game.events.addListener(Phaser.Core.Events.FOCUS, this._onFocus, this);
         game.events.addListener(Phaser.Core.Events.BLUR, this._onBlur, this);
