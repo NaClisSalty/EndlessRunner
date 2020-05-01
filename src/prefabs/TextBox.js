@@ -11,6 +11,7 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
         this.setVelocityX(-125 - (scene.speedUpFactor * 0.005));
     }
     update(){
+        
         if (this.x <-200){
             this.scene.p1Score+=this.points;
             this.destroy();
