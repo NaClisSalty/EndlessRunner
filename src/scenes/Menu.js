@@ -10,6 +10,7 @@ class Menu extends Phaser.Scene {
         this.load.image("player","PlayerPlaceholder.png");
         this.load.atlas("images", "typeObjects.png", "sprites.json");
         this.load.image("textBlock","text_block_01.PNG");
+        this.load.image('menu', 'menu_image.png');
     }
 
     create() {
@@ -31,6 +32,7 @@ class Menu extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         //this.add.sprite(x,y, 'key', 'frame_name');
+        this.add.image(0,0, 'menu').setScale(.5).setOrigin(0,0);
     }
 
     update() {  

@@ -22,6 +22,7 @@ class Play extends Phaser.Scene {
 
     create() {
 
+
         //timer and points
 
         //score

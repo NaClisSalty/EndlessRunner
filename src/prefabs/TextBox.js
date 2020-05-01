@@ -13,6 +13,8 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
     update(){
         if (this.x <-200){
             this.destroy();
+            Play.p1Score+=this.points;
+            console.log(Play.p1Score);
         }
     }
 }
