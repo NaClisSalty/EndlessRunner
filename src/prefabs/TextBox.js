@@ -9,12 +9,14 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
         this.setImmovable(true);
         //speed
         this.setVelocityX(-125 - (scene.speedUpFactor * 0.005));
+        this.scene = scene;
     }
     update(){
+        
         if (this.x <-200){
             this.destroy();
-            Play.p1Score+=this.points;
-            console.log(Play.p1Score);
+            this.scene.p1Score+=this.points;
+            console.log(this.scene.p1Score);
         }
     }
 }
