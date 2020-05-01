@@ -1,6 +1,6 @@
 //Ethan Salzman
 
-class TextBox extends Phaser.Physics.Arcade.Sprite{
+class GlitchTextBox extends Phaser.Physics.Arcade.Sprite{
     constructor(scene, x, y, texture, frame, pointValue) {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
@@ -11,7 +11,7 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
         this.setVelocityX(-125 - (scene.speedUpFactor * 0.005));
     }
     update(){
-        if (this.x <-200){
+        if (this.x <40){
             this.destroy();
         }
     }

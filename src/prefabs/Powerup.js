@@ -76,7 +76,7 @@ class Powerup extends Phaser.Physics.Arcade.Sprite{
     update(){
         //speed for upgrades
         //this.x -= game.settings.powerSpeed;
-        if (this.x <40){
+        if (this.x <-100){
             this.destroy();
         }
     }

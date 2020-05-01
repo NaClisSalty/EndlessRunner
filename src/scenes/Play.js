@@ -21,6 +21,59 @@ class Play extends Phaser.Scene {
     } 
 
     create() {
+
+        //timer and points
+
+        //score
+        this.p1Score = 0;
+
+        //score display
+        let scoreConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#00BCFF',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+        //create a timer and way to check wich difficulty option was chosen
+        let startTime = 0;
+        this.startTime = 0;
+        let timeConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#00BCFF',
+            color: '#843605',
+            align: 'left',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+        
+        this.scoreLeft = this.add.text(20, 20, this.p1Score, scoreConfig);
+
+        scoreConfig.fixedWidth = 0;
+        timeConfig.fixedWidth = 0;
+
+        //timer
+        
+        this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
+            
+        }, null, this);
+        
+        this.timeRight = this.add.text(590, 20, this.startTime +this.clock.getElapsedSeconds(), timeConfig)
+
+
+
+
+
+
         ///*
         //glitch animation
         this.anims.create({key: 'glitchAnim', frames: 
@@ -153,7 +206,8 @@ class Play extends Phaser.Scene {
         //this.tile.tilePositionX -=4;
         //this.tile.tilePositionY -=4
 
-
+        //timer
+        this.timeRight.text = Math.floor(this.startTime +this.clock.getElapsedSeconds());
 
         //console.log(this.powerupTimer);
         //update all objects in gameObjects
