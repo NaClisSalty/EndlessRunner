@@ -18,7 +18,7 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
             this.scene.spawnTextBlock();
         }
 
-        if (this.x < -this.width/4){
+        if (this.x <= -this.width){
             this.scene.p1Score+=this.points;
             //this.scoreLeft.text = this.p1Score;
             this.scene.enemies.remove(this, false, true);
