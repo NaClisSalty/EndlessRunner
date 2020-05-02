@@ -179,19 +179,19 @@ class Play extends Phaser.Scene {
         //music1.setLoop(true);
         this.music1.play();
         //comment to test merge
-        /*
-        this.music2 = this.sound.add('music2');
-        music2.setLoop(true);
+        
+        this.music2 = this.sound.add('music2', {loop: true});
+        
         //this.music2.play();
 
-        this.music3 = this.sound.add('music3');
-        music3.setLoop(true);
+        this.music3 = this.sound.add('music3', {loop: true});
+        
         //this.music3.play();
 
-        this.music4 = this.sound.add('music4');
-        music4.setLoop(true);
+        this.music4 = this.sound.add('music4', {loop: true});
+        
         //this.music4.play();
-            */
+            
 
         
     }
@@ -297,6 +297,10 @@ class Play extends Phaser.Scene {
             console.log("You died!")
             this.player.dead = true;
             this.player.destroy();
+            this.music1.stop();
+            this.music2.stop();
+            this.music3.stop();
+            this.music4.stop();
             this.enemies.clear(true, true);   
             this.powerups.clear(true, true);
             this.scene.start("endScene", {move: this.movementStyle});
