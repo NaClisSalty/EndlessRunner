@@ -283,13 +283,16 @@ class Play extends Phaser.Scene {
     powerCollide(playerObj, powerup){
         //Just make the powerup deal with it
         powerup.activate();
+        //play sound effects
         this.sound.play('beep');
         this.sound.play('tech_scale');
     }
     enemyCollide(playerObj, enemy){
         this.enemies.remove(enemy, false, true);
         if(!this.player.shieldValue){
+            //play sound effects
             this.sound.play('bwah');
+
             console.log("You died!")
             this.player.dead = true;
             this.player.destroy();
@@ -297,6 +300,7 @@ class Play extends Phaser.Scene {
             this.powerups.clear(true, true);
         }
         else
+            //play sound effects
             this.sound.play('bwop');
             this.player.shieldValue = false;
     }
