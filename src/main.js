@@ -13,8 +13,8 @@
 //name:
 //CMPM 120
 //Ian Monahan
-//
-//
+//Ethan Salzman
+//Darcy Phipps
 let config = {
     type: Phaser.CANVAS,
     width: 640,
@@ -44,9 +44,7 @@ let game = new Phaser.Game(config);
 
 //define game settings
 game.settings = {
-    obstacleSpeed: 3,
-    spaceshipSpeed2: 5,
-    gameTimer: 60000
+    gameTimer: 6000000000000
 }
 
 

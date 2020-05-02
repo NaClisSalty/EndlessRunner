@@ -13,6 +13,13 @@ class Play extends Phaser.Scene {
         this.load.audio('music2', 'music2.wav');
         this.load.audio('music3', 'music3.wav');
         this.load.audio('music4', 'music4.wav');
+
+        //preload sound effects
+        this.load.audio('bwah', 'bwah.wav');
+        this.load.audio('beep', 'beep.wav');
+        this.load.audio('bwop', 'bwop.wav');
+        this.load.audio('snare', 'snare.wav');
+        this.load.audio('tech_scale', 'rythmic_tech_sound.mp3');
         //atlas for glitch sprite
         this.load.atlas('glitch1', 'glitchText.png', 'glitchText.json');
 
@@ -258,6 +265,8 @@ class Play extends Phaser.Scene {
         }
     }
 
+    //function to check players score, 
+    //at various values hacker will talk to player and mess with the game
     checkPoints(p1Score){
         if(this.p1Score>20){
 
@@ -277,10 +286,13 @@ class Play extends Phaser.Scene {
     powerCollide(playerObj, powerup){
         //Just make the powerup deal with it
         powerup.activate();
+        this.sound.play('beep');
+        this.sound.play('tech_scale');
     }
     enemyCollide(playerObj, enemy){
         this.enemies.remove(enemy, false, true);
         if(!this.player.shieldValue){
+            this.sound.play('bwah');
             console.log("You died!")
             this.player.dead = true;
             this.player.destroy();
@@ -288,6 +300,7 @@ class Play extends Phaser.Scene {
             this.powerups.clear(true, true);
         }
         else
+            this.sound.play('bwop');
             this.player.shieldValue = false;
     }
 }
