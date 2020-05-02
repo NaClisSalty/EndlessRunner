@@ -8,7 +8,7 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
         scene.physics.add.existing(this);
         this.setImmovable(true);
         //speed
-        this.setVelocityX(-125 - (scene.speedUpFactor * 0.005));
+        this.setVelocityX(-125 - (scene.time.now * 0.005));
         //Check to see if it's made the next barrier
         this.spawned = false;
     }

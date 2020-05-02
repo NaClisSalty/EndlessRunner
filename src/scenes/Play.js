@@ -212,8 +212,6 @@ class Play extends Phaser.Scene {
     }
 
     update(time, delta) {
-        //Increase the time since the game started
-        this.speedUpFactor += delta;
         //tile spritemovement
         this.tile.tilePositionX +=4;
         //this.tile.tilePositionY -=4
