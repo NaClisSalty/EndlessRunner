@@ -13,8 +13,8 @@
 //name:
 //CMPM 120
 //Ian Monahan
-//
-//
+//Ethan Salzman
+//Darcy Phipps
 let config = {
     type: Phaser.CANVAS,
     width: 640,
