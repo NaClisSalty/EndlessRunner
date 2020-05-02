@@ -17,11 +17,12 @@ class Play extends Phaser.Scene {
         this.load.atlas('glitch1', 'glitchText.png', 'glitchText.json');
 
         //tile sprite image
-        //this.load.image('tile', 'tileSprite1.png');
+        this.load.image('tile', 'tileSprite1.png');
     } 
 
     create() {
-
+        //create tilesprite
+        this.tile = this.add.tileSprite(0,0, 1437, 1447, 'tile').setOrigin(0,0).setDepth(-100);
 
         //timer and points
 
@@ -95,8 +96,7 @@ class Play extends Phaser.Scene {
         //Need to track time since start
         this.speedUpFactor = 0;
 
-        //create tilesprite
-        //this.tile = this.add.tileSprite(0,0, 1437, 1447, 'tile').setOrigin(0,0);
+        
 
 
         //define mouse
@@ -190,11 +190,12 @@ class Play extends Phaser.Scene {
         //Figure out what kind of powerup it is
         let effect = Math.floor(Math.random() * this.powerAffects.length);
         this.powerups.add(new Powerup(this, 600, Math.random() * 430 + 25, 
-                                        "images", this.powerImages[effect], this.powerAffects[effect], this.powerEnd[effect],).setOrigin(0));
+                "images", this.powerImages[effect], this.powerAffects[effect], 
+                this.powerEnd[effect],).setOrigin(0)).setDepth(-100);
     }
 
     spawnTextBlock(){
-        let newTextBlock = new TextBox(this, 600, Math.random() * 430 + 25, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
+        let newTextBlock = new TextBox(this, 600, Math.random() * 430, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
         //lets resize them so they dont take up 80% of the sceen
         newTextBlock.setDisplaySize(Phaser.Math.Between(50, 200),Phaser.Math.Between(50, 200));
         this.enemies.add(newTextBlock);
@@ -204,7 +205,7 @@ class Play extends Phaser.Scene {
         //Increase the time since the game started
         this.speedUpFactor += delta;
         //tile spritemovement
-        //this.tile.tilePositionX -=4;
+        this.tile.tilePositionX +=4;
         //this.tile.tilePositionY -=4
 
         
