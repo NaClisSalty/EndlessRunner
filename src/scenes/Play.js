@@ -195,7 +195,9 @@ class Play extends Phaser.Scene {
 
         this.hackerTauntSlice = 0;
         this.hackerTauntTimer = 0;
-        this.hackerTaunt1 = "this string is a test to see if slicing works";
+        this.hackerIndex = 0;
+        this.hackerTauntArray = ["this string is a test to see if slicing works","this string is the next line of text"];
+        this.hackerTaunt = this.hackerTauntArray[0];
     }
 
     spawnPowerup(){
@@ -264,13 +266,19 @@ class Play extends Phaser.Scene {
         }
         if(this.p1Score>20){
             this.hackerTauntTimer += delta;
-            if (this.hackerTauntSlice < this.hackerTaunt1.length && this.hackerTauntTimer >= Phaser.Math.Between(100, 300)) {
-                this.hackerTauntTimer = 0
-                this.hackerTauntSlice++;
-                console.log(this.hackerTaunt1.slice(0,this.hackerTauntSlice));
+            if (this.hackerTauntSlice < this.hackerTaunt.length) {
+                if (this.hackerTauntTimer >= Phaser.Math.Between(100, 300)) {
+                    this.hackerTauntTimer = 0
+                    this.hackerTauntSlice++;
+                    console.log(this.hackerTaunt.slice(0,this.hackerTauntSlice));
+                }
             }
             else {
-
+                if (this.hackerIndex < this.hackerTauntArray.length-1) {
+                    this.hackerTauntSlice = 0;
+                    this.hackerIndex += 1;
+                    this.hackerTaunt = this.hackerTauntArray[this.hackerIndex]
+                }
             }
             
 
