@@ -183,7 +183,9 @@ class Play extends Phaser.Scene {
         //this.music4.play();
             */
 
-        
+        this.hackerTauntSlice = 0;
+        this.hackerTauntTimer = 0;
+        this.hackerTaunt1 = "this string is a test to see if slicing works";
     }
 
     spawnPowerup(){
@@ -210,7 +212,7 @@ class Play extends Phaser.Scene {
 
         
         this.scoreLeft.text = this.p1Score;
-        console.log(this.p1Score);
+        //console.log(this.p1Score);
         
 
         //timer
@@ -253,11 +255,23 @@ class Play extends Phaser.Scene {
                 this.spawnPowerup();
             }
         }
+        if(this.p1Score>20){
+            this.hackerTauntTimer += delta;
+            if (this.hackerTauntSlice < this.hackerTaunt1.length && this.hackerTauntTimer >= Phaser.Math.Between(100, 300)) {
+                this.hackerTauntTimer = 0
+                this.hackerTauntSlice++;
+                console.log(this.hackerTaunt1.slice(0,this.hackerTauntSlice));
+            }
+            else {
+
+            }
+            
+
+        }
     }
 
     checkPoints(p1Score){
         if(this.p1Score>20){
-
         }
     }
 
