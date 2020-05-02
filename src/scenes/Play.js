@@ -206,7 +206,10 @@ class Play extends Phaser.Scene {
         //tile spritemovement
         //this.tile.tilePositionX -=4;
         //this.tile.tilePositionY -=4
+
         
+        this.scoreLeft.text = this.p1Score;
+        console.log(this.p1Score);
         
 
         //timer
