@@ -191,7 +191,7 @@ class Play extends Phaser.Scene {
         let effect = Math.floor(Math.random() * this.powerAffects.length);
         this.powerups.add(new Powerup(this, 600, Math.random() * 430 + 25, 
                 "images", this.powerImages[effect], this.powerAffects[effect], 
-                this.powerEnd[effect],).setOrigin(0)).setDepth(-100);
+                this.powerEnd[effect],).setOrigin(0)).setDepth(100);
     }
 
     spawnTextBlock(){
