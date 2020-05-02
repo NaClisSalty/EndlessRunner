@@ -220,7 +220,6 @@ class Play extends Phaser.Scene {
 
         
         this.scoreLeft.text = this.p1Score;
-        //console.log(this.p1Score);
         
 
         //timer
