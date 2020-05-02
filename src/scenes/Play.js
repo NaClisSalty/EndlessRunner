@@ -299,7 +299,7 @@ class Play extends Phaser.Scene {
             this.player.destroy();
             this.enemies.clear(true, true);   
             this.powerups.clear(true, true);
-            this.scene.start("endScene", this.movementStyle);
+            this.scene.start("endScene", {move: this.movementStyle});
         }
         else
             //play sound effects

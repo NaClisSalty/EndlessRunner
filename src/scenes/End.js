@@ -8,7 +8,7 @@ class End extends Phaser.Scene {
     }
 
     create(){
-        this.add.image(0,0, 'mendMenu').setScale(.5).setOrigin(0,0);
+        this.add.image(0,0, 'endMenu').setScale(.5).setOrigin(0,0);
     }
 
     update(){
