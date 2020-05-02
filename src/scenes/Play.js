@@ -254,6 +254,8 @@ class Play extends Phaser.Scene {
         }
     }
 
+    //function to check players score, 
+    //at various values hacker will talk to player and mess with the game
     checkPoints(p1Score){
         if(this.p1Score>20){
 

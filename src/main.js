@@ -46,7 +46,7 @@ let game = new Phaser.Game(config);
 game.settings = {
     obstacleSpeed: 3,
     spaceshipSpeed2: 5,
-    gameTimer: 60000
+    gameTimer: 6000000000000
 }
 
 
