@@ -13,14 +13,14 @@
 //name:
 //CMPM 120
 //Ian Monahan
-//
-//
+//Ethan Salzman
+//Darcy Phipps
 let config = {
     type: Phaser.CANVAS,
     width: 640,
     height: 480,
     backgroundColor: 0x02BBFF,
-    scene:[Menu, Play],
+    scene:[Menu, Play, End],
     backgroundColor: 'rgba(255,110,110,0.5)',
     physics: {
         default: 'arcade',
@@ -44,11 +44,9 @@ let game = new Phaser.Game(config);
 
 //define game settings
 game.settings = {
-    obstacleSpeed: 3,
-    spaceshipSpeed2: 5,
-    gameTimer: 60000
+    gameTimer: 6000000000000
 }
 
 
 //reserve some keyboard variables
-let keyF, keyLEFT, keyRIGHT;
+let keyLEFT, keyRIGHT;

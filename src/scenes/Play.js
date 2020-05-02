@@ -13,6 +13,13 @@ class Play extends Phaser.Scene {
         this.load.audio('music2', 'music2.wav');
         this.load.audio('music3', 'music3.wav');
         this.load.audio('music4', 'music4.wav');
+
+        //preload sound effects
+        this.load.audio('bwah', 'bwah.wav');
+        this.load.audio('beep', 'beep.wav');
+        this.load.audio('bwop', 'bwop.wav');
+        this.load.audio('snare', 'snare.wav');
+        this.load.audio('tech_scale', 'rythmic_tech_sound.mp3');
         //atlas for glitch sprite
         this.load.atlas('glitch1', 'glitchText.png', 'glitchText.json');
 
@@ -66,13 +73,12 @@ class Play extends Phaser.Scene {
         //timer
         
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
-            
+        
         }, null, this);
         
         this.timeRight = this.add.text(590, 20, this.startTime +this.clock.getElapsedSeconds(), timeConfig)
 
-
-
+        
 
 
 
@@ -157,6 +163,10 @@ class Play extends Phaser.Scene {
         //Spawn the first enemy and init the timer to spawn more
         this.spawnTextBlock()
         this.enemyTimer = 0;
+        
+        //Spawn a couple more enemies to start things off
+        this.time.delayedCall(1000, this.spawnTextBlock, [], this);
+        this.time.delayedCall(1500, this.spawnTextBlock, [],this);
 
         //starts to play music
         //initalizes music tracks
@@ -204,8 +214,6 @@ class Play extends Phaser.Scene {
     }
 
     update(time, delta) {
-        //Increase the time since the game started
-        this.speedUpFactor += delta;
         //tile spritemovement
         this.tile.tilePositionX +=4;
         //this.tile.tilePositionY -=4
@@ -245,7 +253,7 @@ class Play extends Phaser.Scene {
             //timer for spawning the baddies
             this.enemyTimer+= delta;
             if(this.enemyTimer >= 3000){
-                this.spawnTextBlock();
+                //this.spawnTextBlock();
                 this.enemyTimer = 0;
             }
             //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
@@ -270,6 +278,8 @@ class Play extends Phaser.Scene {
         }
     }
 
+    //function to check players score, 
+    //at various values hacker will talk to player and mess with the game
     checkPoints(p1Score){
         if(this.p1Score>20){
         }
@@ -288,10 +298,16 @@ class Play extends Phaser.Scene {
     powerCollide(playerObj, powerup){
         //Just make the powerup deal with it
         powerup.activate();
+        //play sound effects
+        this.sound.play('beep');
+        this.sound.play('tech_scale');
     }
     enemyCollide(playerObj, enemy){
         this.enemies.remove(enemy, false, true);
         if(!this.player.shieldValue){
+            //play sound effects
+            this.sound.play('bwah');
+
             console.log("You died!")
             this.player.dead = true;
             this.player.destroy();
@@ -299,6 +315,8 @@ class Play extends Phaser.Scene {
             this.powerups.clear(true, true);
         }
         else
+            //play sound effects
+            this.sound.play('bwop');
             this.player.shieldValue = false;
     }
 }
