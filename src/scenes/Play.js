@@ -66,13 +66,12 @@ class Play extends Phaser.Scene {
         //timer
         
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
-            
+        
         }, null, this);
         
         this.timeRight = this.add.text(590, 20, this.startTime +this.clock.getElapsedSeconds(), timeConfig)
 
-
-
+        
 
 
 
@@ -157,6 +156,10 @@ class Play extends Phaser.Scene {
         //Spawn the first enemy and init the timer to spawn more
         this.spawnTextBlock()
         this.enemyTimer = 0;
+        
+        //Spawn a couple more enemies to start things off
+        this.time.delayedCall(1000, this.spawnTextBlock, [], this);
+        this.time.delayedCall(1500, this.spawnTextBlock, [],this);
 
         //starts to play music
         //initalizes music tracks
@@ -243,7 +246,7 @@ class Play extends Phaser.Scene {
             //timer for spawning the baddies
             this.enemyTimer+= delta;
             if(this.enemyTimer >= 3000){
-                this.spawnTextBlock();
+                //this.spawnTextBlock();
                 this.enemyTimer = 0;
             }
             //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
