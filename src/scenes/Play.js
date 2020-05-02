@@ -256,7 +256,7 @@ class Play extends Phaser.Scene {
 
     checkPoints(p1Score){
         if(this.p1Score>20){
-            
+
         }
     }
 
