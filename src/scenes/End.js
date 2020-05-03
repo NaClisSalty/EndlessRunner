@@ -7,6 +7,11 @@ class End extends Phaser.Scene {
         this.movementStyle = data.move;
     }
 
+    preload() {
+        this.load.path = './Assets/'
+        this.load.image('endMenu', 'end_image.png');
+    }
+
     create(){
         this.add.image(0,0, 'endMenu').setScale(.5).setOrigin(0,0);
 
