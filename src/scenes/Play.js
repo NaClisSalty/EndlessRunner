@@ -211,7 +211,11 @@ class Play extends Phaser.Scene {
     spawnTextBlock(){
         let newTextBlock = new TextBox(this, 600, Math.random() * 430, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
         //lets resize them so they dont take up 80% of the sceen
-        newTextBlock.setDisplaySize(Phaser.Math.Between(50, 200),Phaser.Math.Between(50, 200));
+        //newTextBlock.setScale(Phaser.Math.Between(.05, .15),Phaser.Math.Between(.05, .15));
+        //Have to give the scales variables to prevent weird behaviour
+        let xScale = .5 + Math.random()/10;
+        console.log(Math.random()/10)
+        newTextBlock.setScale(.05 + Math.random()/10, .05 + Math.random()/10);
         this.enemies.add(newTextBlock);
     }
 
