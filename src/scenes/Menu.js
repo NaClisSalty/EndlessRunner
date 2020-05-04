@@ -4,7 +4,7 @@ class Menu extends Phaser.Scene {
     }
     preload() {
         this.load.path = './Assets/'
-        this.load.image("player","PlayerPlaceholder.png");
+        this.load.image("player","Player.png");
         this.load.atlas("images", "typeObjects.png", "sprites.json");
         this.load.image("textBlock","text_block_01.PNG");
         this.load.image('menu', 'menu_image.png');
