@@ -65,6 +65,7 @@ class Play extends Phaser.Scene {
             fixedWidth: 100
         }
         
+        //Display the score
         this.scoreLeft = this.add.text(20, 20, this.p1Score, scoreConfig);
 
         scoreConfig.fixedWidth = 0;
@@ -156,7 +157,8 @@ class Play extends Phaser.Scene {
         
         //Spawn a couple more enemies to start things off
         this.time.delayedCall(1000, this.spawnTextBlock, [], this);
-        this.time.delayedCall(1500, this.spawnTextBlock, [],this);
+        //Only spawn the third after quite a while to make the game easier when first learning
+        this.time.delayedCall(15000, this.spawnTextBlock, [],this);
 
         //starts to play music
         //initalizes music tracks
@@ -196,13 +198,14 @@ class Play extends Phaser.Scene {
         }
             
 
+
+        //Set up all of the hacker taunting code
         this.hackerTauntSlice = 0;
         this.hackerTauntTimer = 0;
         this.hackerIndex = 0;
         this.hackerText = this.add.text(40, 440, "", hackerConfig);
         this.hackerIndexInner = 0;
         this.hackerTauntArray = [];
-        this.hackerTaunt = this.hackerTauntArray[0];
         this.hackerTauntArray.push('HELLO WORLD! LOL JK, i mean welcome to hell budy!');
         this.hackerTauntArray.push('Yeah so, I totally hacked your website.');
         this.hackerTauntArray.push('If you want to get it back you have to play my crappy endless runner. LOL ;)');
@@ -302,28 +305,7 @@ class Play extends Phaser.Scene {
                 this.spawnPowerup();
             }
         }
-        //this.checkPoints();
-        //if(){
-            
-            /*
-            this.hackerTauntTimer += delta;
-            if (this.hackerTauntSlice < this.hackerTaunt.length) {
-                if (this.hackerTauntTimer >= Phaser.Math.Between(100, 300)) {
-                    this.hackerTauntTimer = 0
-                    this.hackerTauntSlice++;
-                    console.log(this.hackerTaunt.slice(0,this.hackerTauntSlice));
-                }
-            }
-            else {
-                if (this.hackerIndex < this.hackerTauntArray.length-1) {
-                    this.hackerTauntSlice = 0;
-                    this.hackerIndex += 1;
-                    this.hackerTaunt = this.hackerTauntArray[this.hackerIndex]
-                }
-            }*/
-            
 
-        //}
     }
 
     //function to check players score, 
