@@ -166,26 +166,27 @@ class Play extends Phaser.Scene {
         this.music1 = this.sound.add('music1', {loop: true});
         //music1.setLoop(true);
         this.music1.play();
+        this.music1.setVolume(.2);
         //comment to test merge
         
         this.music2 = this.sound.add('music2', {loop: true});
-        
+        this.music2.setVolume(.2);
         //this.music2.play();
 
         this.music3 = this.sound.add('music3', {loop: true});
-        
+        this.music3.setVolume(.2);
         //this.music3.play();
 
         this.music4 = this.sound.add('music4', {loop: true});
-        
+        this.music4.setVolume(.2);
         //this.music4.play();
 
 
         //hacker text initialization
         let hackerConfig = {
             fontFamily: 'Neo Sans',
-            fontSize: '14px',
-            color: '#843605',
+            fontSize: '32px',
+            color: '#FF0000',
             align: 'right',
             padding: {
                 top: 5,
@@ -199,7 +200,7 @@ class Play extends Phaser.Scene {
         this.hackerTauntSlice = 0;
         this.hackerTauntTimer = 0;
         this.hackerIndex = 0;
-        this.hackerText = this.add.text(40, 450, "", hackerConfig).setDepth(20);
+        this.hackerText = this.add.text(40, 400, "", hackerConfig).setDepth(20);
         this.hackerTauntArray = [];
         this.hackerTauntArray.push(['HELLO WORLD!',' LOL JK, i mean welcome to hell budy!']);
         this.hackerTauntArray.push(['Yeah so,',' I totally hacked your website.']);
