@@ -5,6 +5,8 @@ class End extends Phaser.Scene {
     }
     init(data){
         this.movementStyle = data.move;
+        this.timeSurvived = data.time;
+        this.score = data.points;
     }
 
     preload() {
