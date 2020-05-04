@@ -215,7 +215,9 @@ class Play extends Phaser.Scene {
         this.hackerTauntArray.push(['Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.']);
 
         this.hackerIndexInner = 0;
-
+        console.log(this.hackerTauntArray)
+        console.log(this.hackerTauntArray[0][0])
+        console.log(this.hackerTauntArray[1])
         this.once = true;
     }
 
@@ -234,7 +236,6 @@ class Play extends Phaser.Scene {
         //newTextBlock.setScale(Phaser.Math.Between(.05, .15),Phaser.Math.Between(.05, .15));
         //Have to give the scales variables to prevent weird behaviour
         let xScale = .5 + Math.random()/10;
-        console.log(Math.random()/10)
         newTextBlock.setScale(.05 + Math.random()/10, .05 + Math.random()/10);
         this.enemies.add(newTextBlock);
     }
@@ -288,7 +289,7 @@ class Play extends Phaser.Scene {
                 this.spawnPowerup();
             }
         }
-        this.checkPoints();
+        //this.checkPoints();
         //if(){
             
             /*
@@ -328,7 +329,9 @@ class Play extends Phaser.Scene {
                     callbackScope: this,
                     args: [setupInnerIndex, this.hackerIndex]
                 })
-                totalPriorTime += 100 * this.hackerTauntArray[this.hackerIndex][setupInnerIndex++];
+                totalPriorTime += 100 * this.hackerTauntArray[this.hackerIndex][setupInnerIndex].length + 500;
+                setupInnerIndex++;
+                console.log(setupInnerIndex);
             }
             this.hackerIndex++;
             /*this.hackerTauntTimer += delta;
@@ -354,6 +357,7 @@ class Play extends Phaser.Scene {
 
     hackerPrintLine(innerIndex, outerIndex){
         this.hackerTauntSlice = 0;
+        console.log(this.hackerTauntArray[outerIndex][innerIndex]);
         this.time.addEvent({
             delay: 100,
             repeat: this.hackerTauntArray[outerIndex][innerIndex].length,
