@@ -38,7 +38,7 @@ class Play extends Phaser.Scene {
 
         //score display
         let scoreConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Neo Sans',
             fontSize: '28px',
             backgroundColor: '#00BCFF',
             color: '#843605',
@@ -51,7 +51,7 @@ class Play extends Phaser.Scene {
         }
         //create a timer and way to check wich difficulty option was chosen
         let timeConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Neo Sans',
             fontSize: '28px',
             backgroundColor: '#00BCFF',
             color: '#843605',
