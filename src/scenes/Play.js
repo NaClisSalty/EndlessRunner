@@ -331,6 +331,10 @@ class Play extends Phaser.Scene {
 
     }
 
+    hackerPrint(hackerTauntArray){
+
+    }
+
 
     _onFocus() {
         this.paused = false;
