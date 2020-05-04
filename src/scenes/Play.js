@@ -204,7 +204,7 @@ class Play extends Phaser.Scene {
         this.hackerIndex = 0;
         this.hackerText = this.add.text(40, 440, "", hackerConfig);
         this.hackerTauntArray = [];
-        this.hackerTauntArray.push('HELLO WORLD! LOL JK, i mean welcome to hell budy!');
+        this.hackerTauntArray.push(['HELLO WORLD!',' LOL JK, i mean welcome to hell budy!']);
         this.hackerTauntArray.push('Yeah so, I totally hacked your website.');
         this.hackerTauntArray.push('If you want to get it back you have to play my crappy endless runner. LOL ;)');
         this.hackerTauntArray.push('If you prove your worth ill let you have the site back. Maybe...');
