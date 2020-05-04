@@ -14,7 +14,7 @@ class Menu extends Phaser.Scene {
     }
 
     create() {
-
+        //Menu largely grabbed from rocket patrol
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '20px',
