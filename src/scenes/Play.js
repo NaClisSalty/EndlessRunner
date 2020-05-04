@@ -227,8 +227,9 @@ class Play extends Phaser.Scene {
         
 
         //Array containing the unlock requirements for each line of text
-        this.hackerThresholds = [20, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2500, 3000, 3500, 4000, 4500, 5000];
+        this.hackerThresholds = [20, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000, 14000, 16000, 18000, 20000, 25000, 30000, 35000, 40000, 45000, 50000];
         
+
     }
 
     spawnPowerup(){
@@ -324,7 +325,7 @@ class Play extends Phaser.Scene {
         }
         //change text boxes to glitch text
         if(this.p1Score>1000){
-            this.
+            
         }
         //music change to music 3
         if(this.p1Score>1200){
