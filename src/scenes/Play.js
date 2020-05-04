@@ -305,7 +305,7 @@ class Play extends Phaser.Scene {
         this.p1Score += newPoints;
         this.scoreLeft.text = this.p1Score;
 
-        
+
         if(this.p1Score>this.hackerThresholds[this.hackerIndex]){
             let setupInnerIndex = 0;
             let totalPriorTime = 0;
@@ -384,9 +384,10 @@ class Play extends Phaser.Scene {
             if(!enemy.spawned)
                 this.spawnTextBlock();
             this.checkPoints(enemy.points);
+            //Then kill the enemy
+            this.enemies.remove(enemy, false, true);
         }
         
-        //No matter what, the enemy needs to die
-        this.enemies.remove(enemy, false, true);
+        
     }
 }
