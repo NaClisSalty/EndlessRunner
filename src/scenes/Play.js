@@ -239,6 +239,7 @@ class Play extends Phaser.Scene {
         
         this.hackerTauntArray.push(['Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.']);
 
+        //Array containing the unlock requirements for each line of text
         this.hackerThresholds = [20];
         
     }
@@ -342,7 +343,6 @@ class Play extends Phaser.Scene {
         if(this.p1Score>this.hackerThresholds[this.hackerIndex]){
             this.once = false;
 
-            //this.hackerPrintLine(this.hackerIndex);
             let setupInnerIndex = 0;
             let totalPriorTime = 0;
             while(setupInnerIndex < this.hackerTauntArray[this.hackerIndex].length){
@@ -356,23 +356,6 @@ class Play extends Phaser.Scene {
                 setupInnerIndex++;
             }
             this.hackerIndex++;
-            /*this.hackerTauntTimer += delta;
-            if (this.hackerTauntSlice < this.hackerTaunt.length) {
-                if (this.hackerTauntTimer >= Phaser.Math.Between(100, 300)) {
-                    this.hackerTauntTimer = 0
-                    this.hackerTauntSlice++;
-                    this.hackerText.text = (this.hackerTaunt.slice(0,this.hackerTauntSlice));
-                }
-            }
-            else {
-                if (this.hackerIndex < this.hackerTauntArray.length-1) {
-                    this.hackerTauntSlice = 0;
-                    this.hackerIndex += 1;
-                    this.hackerTaunt = this.hackerTauntArray[this.hackerIndex]
-                }
-            }
-            */
-
         }
 
     }
