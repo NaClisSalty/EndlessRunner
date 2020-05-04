@@ -204,7 +204,7 @@ class Play extends Phaser.Scene {
         this.hackerIndex = 0;
         this.hackerText = this.add.text(40, 440, "", hackerConfig);
         this.hackerTauntArray = [];
-        this.hackerTauntArray.push('HELLO WORLD! LOL JK, i mean welcome to hell budy!');
+        this.hackerTauntArray.push(['HELLO WORLD!',' LOL JK, i mean welcome to hell budy!']);
         this.hackerTauntArray.push('Yeah so, I totally hacked your website.');
         this.hackerTauntArray.push('If you want to get it back you have to play my crappy endless runner. LOL ;)');
         this.hackerTauntArray.push('If you prove your worth ill let you have the site back. Maybe...');
@@ -304,6 +304,8 @@ class Play extends Phaser.Scene {
     checkPoints(newPoints){
         this.p1Score += newPoints;
         this.scoreLeft.text = this.p1Score;
+
+        
         if(this.p1Score>this.hackerThresholds[this.hackerIndex]){
             let setupInnerIndex = 0;
             let totalPriorTime = 0;
@@ -369,7 +371,9 @@ class Play extends Phaser.Scene {
             this.music4.stop();
             this.enemies.clear(true, true);   
             this.powerups.clear(true, true);
-            this.scene.start("endScene", {move: this.movementStyle});
+            this.scene.start("endScene", {move: this.movementStyle, 
+                                points: this.p1Score,
+                                time: this.time.now - this.startTime});
         }
         else{
             //play sound effects
