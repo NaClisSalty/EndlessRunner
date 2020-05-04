@@ -339,7 +339,9 @@ class Play extends Phaser.Scene {
     //function to check players score, 
     //at various values hacker will talk to player and mess with the game
     //Also handles changing the score
-    checkPoints(){
+    checkPoints(newPoints){
+        this.p1Score += newPoints;
+        this.scoreLeft = this.p1Score;
         if(this.p1Score>this.hackerThresholds[this.hackerIndex]){
             this.once = false;
 
@@ -394,7 +396,6 @@ class Play extends Phaser.Scene {
         this.sound.play('tech_scale');
     }
     enemyCollide(playerObj, enemy){
-        this.enemies.remove(enemy, false, true);
         if(!this.player.shieldValue){
             //play sound effects
             this.sound.play('bwah');
@@ -410,9 +411,16 @@ class Play extends Phaser.Scene {
             this.powerups.clear(true, true);
             this.scene.start("endScene", {move: this.movementStyle});
         }
-        else
+        else{
             //play sound effects
             this.sound.play('bwop');
             this.player.shieldValue = false;
+            //Need to give the player credit for the thing dying, and also spawn a new one
+            this.spawnTextBlock();
+            this.checkPoints(enemy.points);
+        }
+        
+        //No matter what, the enemy needs to die
+        this.enemies.remove(enemy, false, true);
     }
 }
