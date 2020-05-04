@@ -215,9 +215,6 @@ class Play extends Phaser.Scene {
         this.hackerTauntArray.push(['Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.']);
 
         this.hackerIndexInner = 0;
-        console.log(this.hackerTauntArray)
-        console.log(this.hackerTauntArray[0][0])
-        console.log(this.hackerTauntArray[1])
         this.once = true;
     }
 
@@ -315,6 +312,7 @@ class Play extends Phaser.Scene {
 
     //function to check players score, 
     //at various values hacker will talk to player and mess with the game
+    //Also handles changing the score
     checkPoints(){
         if(this.p1Score>20 && this.once){
             this.once = false;
@@ -331,7 +329,6 @@ class Play extends Phaser.Scene {
                 })
                 totalPriorTime += 100 * this.hackerTauntArray[this.hackerIndex][setupInnerIndex].length + 500;
                 setupInnerIndex++;
-                console.log(setupInnerIndex);
             }
             this.hackerIndex++;
             /*this.hackerTauntTimer += delta;
@@ -357,7 +354,6 @@ class Play extends Phaser.Scene {
 
     hackerPrintLine(innerIndex, outerIndex){
         this.hackerTauntSlice = 0;
-        console.log(this.hackerTauntArray[outerIndex][innerIndex]);
         this.time.addEvent({
             delay: 100,
             repeat: this.hackerTauntArray[outerIndex][innerIndex].length,
