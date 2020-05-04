@@ -28,7 +28,12 @@ Took a lot of work to fine-tune, feel that I gained a lot of knowledge from the 
 Despite the pain, I think it turned out really nicely, so picked it to highlight here
 
 Creative tilt: Visual Style and Design
-
+We implemented a story that unfolds as you reach certin point values. A hacker has taken 
+over your website and is forcing you to play his crappy endless runner for the lols.
+As the game progresses at certin point values the hacker will talk to you through text onscreen.
+As the game goes on the hacker will also begin to mess with game mechanics, like the music, the text box textures,
+and the players size and speed. I think the visaul story telling and hacker feel of the game came out very well.
+I also like how the metaness of the story can add to the visual style.
 
 */
 
