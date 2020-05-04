@@ -162,6 +162,7 @@ class Play extends Phaser.Scene {
         let music2 =0;
         let music3 =0;
         let music4 =0;
+        
 
         this.music1 = this.sound.add('music1', {loop: true});
         //music1.setLoop(true);
@@ -181,8 +182,7 @@ class Play extends Phaser.Scene {
         this.music4.setVolume(.2);
         //this.music4.play();
 
-        //sound effect noise
-        this.tech_scale.setVolume(.02);
+        
         //hacker text initialization
         let hackerConfig = {
             fontFamily: 'Neo Sans',
@@ -397,6 +397,8 @@ class Play extends Phaser.Scene {
         //Just make the powerup deal with it
         powerup.activate();
         //play sound effects
+        //sound effect noise
+        
         this.sound.play('beep');
         this.sound.play('tech_scale');
     }
