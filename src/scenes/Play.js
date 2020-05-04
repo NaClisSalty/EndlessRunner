@@ -304,6 +304,8 @@ class Play extends Phaser.Scene {
     checkPoints(newPoints){
         this.p1Score += newPoints;
         this.scoreLeft.text = this.p1Score;
+
+        
         if(this.p1Score>this.hackerThresholds[this.hackerIndex]){
             let setupInnerIndex = 0;
             let totalPriorTime = 0;
