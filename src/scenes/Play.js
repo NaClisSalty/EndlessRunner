@@ -212,6 +212,31 @@ class Play extends Phaser.Scene {
         this.hackerText = this.add.text(40, 440, "", hackerConfig);
         this.hackerTauntArray = [["this string is a test to see if slicing works","this string is the next line of text"]];
         this.hackerTaunt = this.hackerTauntArray[0];
+        this.hackerTauntArray.push('HELLO WORLD! LOL JK, i mean welcome to hell budy!');
+        this.hackerTauntArray.push('Yeah so, I totally hacked your website.');
+        this.hackerTauntArray.push('If you want to get it back you have to play my crappy endless runner. LOL ;)');
+        this.hackerTauntArray.push('If you prove your worth ill let you have the site back. Maybe...');
+        this.hackerTauntArray.push('Yeah so if you havent figured it out by now, avoid the really blurry badly scaled blocks of lorem ipsum text');
+        this.hackerTauntArray.push('The other things give you pwers, some are helpful...some aren’t');
+        this.hackerTauntArray.push('Man this is BORING. Lets change something. NEW MUSIC BABY!');
+        this.hackerTauntArray.push('How do u like me tunes bruh? ');
+        this.hackerTauntArray.push('SO FUN! MUCH MUSIC! WOWOWOWOW!');
+        this.hackerTauntArray.push('Man don’t you wish that you were getting rick rolled by now?');
+        this.hackerTauntArray.push('Yeah so I forgot to tell you that the website may be a bit unstable….');
+        this.hackerTauntArray.push('WOw LooK aT aLL ThAt AmaZinG aNiMATion!?@#%$');
+        this.hackerTauntArray.push('MUSIC CHANGE! AWESOME MIX ^( BABY!');
+        this.hackerTauntArray.push('Man wouldn’t it be funny if i started messing with your controls?');
+        this.hackerTauntArray.push('I mean wouldn’t that be totally lolzers?');
+        this.hackerTauntArray.push('Don’t worry I’m not that much of a jerk. I DEFINITELY wouldn’t do something like that.');
+        this.hackerTauntArray.push('PSYCHE! I mean you saw this coming anyways right? Otherwise, I feel bad for your incredible lack of intelligence. I mean bigger is always better right ;)');
+        this.hackerTauntArray.push('Time for some new free of charge tunes. Even Hackers respect intellectual property rights man.');
+        this.hackerTauntArray.push('I feel like its time to screw with you some more. So guess what, youre gonna be stuck going really slow for a bit.');
+        this.hackerTauntArray.push('MULTIPLE TRACKS OF MUSIC BABY!');
+        this.hackerTauntArray.push('EVEN MORE TRACKS OF MUSIC!');
+        this.hackerTauntArray.push('MOAR MOAR MOAR MOAR! FEED ME SEYMORE!');
+        this.hackerTauntArray.push('Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.');
+        
+
         this.hackerTauntArray.push(['Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.']);
 
         this.hackerIndexInner = 0;
