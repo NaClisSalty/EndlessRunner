@@ -210,7 +210,8 @@ class Play extends Phaser.Scene {
         this.hackerTauntTimer = 0;
         this.hackerIndex = 0;
         this.hackerText = this.add.text(40, 440, "", hackerConfig);
-        this.hackerTauntArray = [["this string is a test to see if slicing works","this string is the next line of text"]];
+        this.hackerIndexInner = 0;
+        this.hackerTauntArray = [];
         this.hackerTaunt = this.hackerTauntArray[0];
         this.hackerTauntArray.push('HELLO WORLD! LOL JK, i mean welcome to hell budy!');
         this.hackerTauntArray.push('Yeah so, I totally hacked your website.');
@@ -236,11 +237,10 @@ class Play extends Phaser.Scene {
         this.hackerTauntArray.push('MOAR MOAR MOAR MOAR! FEED ME SEYMORE!');
         this.hackerTauntArray.push('Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.');
         
-
         this.hackerTauntArray.push(['Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.']);
 
-        this.hackerIndexInner = 0;
-        this.once = true;
+        this.hackerThresholds = [20];
+        
     }
 
     spawnPowerup(){
@@ -339,7 +339,7 @@ class Play extends Phaser.Scene {
     //at various values hacker will talk to player and mess with the game
     //Also handles changing the score
     checkPoints(){
-        if(this.p1Score>20 && this.once){
+        if(this.p1Score>this.hackerThresholds[this.hackerIndex]){
             this.once = false;
 
             //this.hackerPrintLine(this.hackerIndex);
