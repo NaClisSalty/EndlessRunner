@@ -183,9 +183,9 @@ class Play extends Phaser.Scene {
 
         //hacker text initialization
         let hackerConfig = {
-            fontFamily: 'Courier',
-            fontSize: '16px',
-            color: '#B03605',
+            fontFamily: 'Neo Sans',
+            fontSize: '14px',
+            color: '#843605',
             align: 'right',
             padding: {
                 top: 5,
