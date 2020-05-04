@@ -11,7 +11,7 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
         //Store the score
         this.points = pointValue;
         //speed
-        this.setVelocityX(-125 - (scene.time.now * 0.005));
+        this.setVelocityX(Math.max(-125 - ((scene.time.now-scene.startTime)* 0.005)), -175);
         //Check to see if it's made the next barrier
         this.spawned = false;
     }

@@ -5,7 +5,7 @@ class Powerup extends Phaser.Physics.Arcade.Sprite{
         scene.physics.add.existing(this);
         //this.setCollideWorldBounds(true);
         this.setImmovable(true);
-        this.setVelocityX(-75 - (scene.time.now * 0.005));
+        this.setVelocityX(Math.max(-75 - ((scene.time.now-scene.startTime) * 0.005), -150));
         //Store the effect of the powerup and how to undo it
         this.effect = funct;
         this.endEffect = antiFunct;
