@@ -151,11 +151,10 @@ class Play extends Phaser.Scene {
         this.enemies = this.add.group({
             runChildUpdate: true
         })
-        //Spawn the first enemy and init the timer to spawn more
+        //Spawn the first enemy
         this.spawnTextBlock()
-        this.enemyTimer = 0;
         
-        //Spawn a couple more enemies to start things off
+        //Spawn a couple more enemies, later they will spawn themselves
         this.time.delayedCall(1000, this.spawnTextBlock, [], this);
         //Only spawn the third after quite a while to make the game easier when first learning
         this.time.delayedCall(15000, this.spawnTextBlock, [],this);
@@ -204,7 +203,6 @@ class Play extends Phaser.Scene {
         this.hackerTauntTimer = 0;
         this.hackerIndex = 0;
         this.hackerText = this.add.text(40, 440, "", hackerConfig);
-        this.hackerIndexInner = 0;
         this.hackerTauntArray = [];
         this.hackerTauntArray.push('HELLO WORLD! LOL JK, i mean welcome to hell budy!');
         this.hackerTauntArray.push('Yeah so, I totally hacked your website.');
@@ -290,12 +288,6 @@ class Play extends Phaser.Scene {
 
             this.physics.world.collide(this.player, this.enemies, this.enemyCollide, null, this);
 
-            //timer for spawning the baddies
-            this.enemyTimer+= delta;
-            if(this.enemyTimer >= 3000){
-                //this.spawnTextBlock();
-                this.enemyTimer = 0;
-            }
             //Increment the powerup spawn timer, then see if it's time for another one, and if it is then spawn it
             this.powerupTimer += delta;
             if(this.powerupTimer >= 5000){
@@ -313,8 +305,6 @@ class Play extends Phaser.Scene {
         this.p1Score += newPoints;
         this.scoreLeft.text = this.p1Score;
         if(this.p1Score>this.hackerThresholds[this.hackerIndex]){
-            this.once = false;
-
             let setupInnerIndex = 0;
             let totalPriorTime = 0;
             while(setupInnerIndex < this.hackerTauntArray[this.hackerIndex].length){
@@ -386,7 +376,9 @@ class Play extends Phaser.Scene {
             this.sound.play('bwop');
             this.player.shieldValue = false;
             //Need to give the player credit for the thing dying, and also spawn a new one
-            this.spawnTextBlock();
+            //Only should spawn a new one if the enemy hasn't yet
+            if(!enemy.spawned)
+                this.spawnTextBlock();
             this.checkPoints(enemy.points);
         }
         

@@ -13,6 +13,7 @@ class TextBox extends Phaser.Physics.Arcade.Sprite{
         this.spawned = false;
     }
     update(){
+        //This code is somewhat taken from paddleParkour
         if(!this.spawned && this.x <= 150){
             this.spawned = true;
             this.scene.spawnTextBlock();
