@@ -50,8 +50,6 @@ class Play extends Phaser.Scene {
             fixedWidth: 100
         }
         //create a timer and way to check wich difficulty option was chosen
-        let startTime = 0;
-        this.startTime = 0;
         let timeConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
@@ -76,8 +74,10 @@ class Play extends Phaser.Scene {
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
         
         }, null, this);
-        
-        this.timeRight = this.add.text(590, 20, this.startTime +this.clock.getElapsedSeconds(), timeConfig)
+        //Get the time that the scene started since this.time.now is global or something
+        this.startTime = this.time.now;
+        //Set the timer to how long since the start (should be 0)
+        this.timeRight = this.add.text(590, 20, Math.floor((this.time.now-this.startTime)/1000), timeConfig)
 
 
         ///*
@@ -262,11 +262,9 @@ class Play extends Phaser.Scene {
         //this.tile.tilePositionY -=4
 
         
-        this.scoreLeft.text = this.p1Score;
-        
 
         //timer
-        this.timeRight.text = Math.floor(this.startTime +this.clock.getElapsedSeconds());
+        this.timeRight.text = "" + Math.floor((this.time.now-this.startTime)/1000);
 
         //console.log(this.powerupTimer);
         //update all objects in gameObjects
@@ -313,7 +311,7 @@ class Play extends Phaser.Scene {
     //Also handles changing the score
     checkPoints(newPoints){
         this.p1Score += newPoints;
-        this.scoreLeft = this.p1Score;
+        this.scoreLeft.text = this.p1Score;
         if(this.p1Score>this.hackerThresholds[this.hackerIndex]){
             this.once = false;
 
