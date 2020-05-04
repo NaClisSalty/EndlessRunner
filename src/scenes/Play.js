@@ -317,6 +317,48 @@ class Play extends Phaser.Scene {
             }
             this.hackerIndex++;
         }
+        //change music to music2
+        if(this.p1Score>500){
+            this.music1.stop();
+            this.music2.play();
+        }
+        //change text boxes to glitch text
+        if(this.p1Score>1000){
+            this.
+        }
+        //music change to music 3
+        if(this.p1Score>1200){
+            this.music2.stop();
+            this.music3.play();
+        }
+        //increase mouse size
+        if(this.p1Score>2000){
+            
+        }
+        //music change to music4
+        if(this.p1Score>2500){
+            this.music3.stop();
+            this.music4.play();
+        }
+        //go slow
+        if(this.p1Score>3000){
+            
+        }
+        //multiple music tracks
+        if(this.p1Score>3500){
+            this.music3.play();
+        }
+        //3 tracks
+        if(this.p1Score>4000){
+            this.music2.play();
+        }
+        //4 tracks
+        if(this.p1Score>4500){
+            this.music1.play();
+        }
+
+
+
 
     }
 
