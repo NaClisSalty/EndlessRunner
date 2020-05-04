@@ -334,7 +334,7 @@ class Play extends Phaser.Scene {
             this.music2.stop();
             this.music3.play();
         }
-        //increase mouse size
+        //increase mouse size temporarily
         if(this.p1Score>2000){
             
         }
@@ -343,7 +343,7 @@ class Play extends Phaser.Scene {
             this.music3.stop();
             this.music4.play();
         }
-        //go slow
+        //go slow temporarily
         if(this.p1Score>3000){
             
         }
