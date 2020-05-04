@@ -181,7 +181,8 @@ class Play extends Phaser.Scene {
         this.music4.setVolume(.2);
         //this.music4.play();
 
-
+        //sound effect noise
+        this.tech_scale.setVolume(.02);
         //hacker text initialization
         let hackerConfig = {
             fontFamily: 'Neo Sans',
