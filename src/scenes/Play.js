@@ -191,14 +191,29 @@ class Play extends Phaser.Scene {
         this.music4 = this.sound.add('music4', {loop: true});
         
         //this.music4.play();
+
+
+        //hacker text initialization
+        let hackerConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
             
 
         this.hackerTauntSlice = 0;
         this.hackerTauntTimer = 0;
         this.hackerIndex = 0;
+        this.hackerText = this.add.text(440, 40, "", hackerConfig);
         this.hackerTauntArray = ["this string is a test to see if slicing works","this string is the next line of text"];
         this.hackerTaunt = this.hackerTauntArray[0];
-        this.hackerTauntArray.push('Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.')
+        this.hackerTauntArray.push('Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.');
     }
 
     spawnPowerup(){
@@ -295,6 +310,22 @@ class Play extends Phaser.Scene {
     //at various values hacker will talk to player and mess with the game
     checkPoints(){
         if(this.p1Score>20){
+            this.hackerTauntTimer += delta;
+            if (this.hackerTauntSlice < this.hackerTaunt.length) {
+                if (this.hackerTauntTimer >= Phaser.Math.Between(100, 300)) {
+                    this.hackerTauntTimer = 0
+                    this.hackerTauntSlice++;
+                    this.hackerText.text = (this.hackerTaunt.slice(0,this.hackerTauntSlice));
+                }
+            }
+            else {
+                if (this.hackerIndex < this.hackerTauntArray.length-1) {
+                    this.hackerTauntSlice = 0;
+                    this.hackerIndex += 1;
+                    this.hackerTaunt = this.hackerTauntArray[this.hackerIndex]
+                }
+            }
+            
 
         }
 
