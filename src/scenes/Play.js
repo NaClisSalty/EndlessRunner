@@ -64,20 +64,17 @@ class Play extends Phaser.Scene {
         }
         
         //Display the score
-        this.scoreLeft = this.add.text(20, 20, this.p1Score, scoreConfig);
+        this.scoreLeft = this.add.text(20, 20, this.p1Score, scoreConfig).setDepth(20);
 
         scoreConfig.fixedWidth = 0;
         timeConfig.fixedWidth = 0;
 
         //timer
-        
-        this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
-        
-        }, null, this);
+
         //Get the time that the scene started since this.time.now is global or something
         this.startTime = this.time.now;
         //Set the timer to how long since the start (should be 0)
-        this.timeRight = this.add.text(590, 20, Math.floor((this.time.now-this.startTime)/1000), timeConfig)
+        this.timeRight = this.add.text(590, 20, Math.floor((this.time.now-this.startTime)/1000), timeConfig).setDepth(20);
 
 
         ///*
@@ -202,7 +199,7 @@ class Play extends Phaser.Scene {
         this.hackerTauntSlice = 0;
         this.hackerTauntTimer = 0;
         this.hackerIndex = 0;
-        this.hackerText = this.add.text(40, 440, "", hackerConfig);
+        this.hackerText = this.add.text(40, 450, "", hackerConfig).setDepth(20);
         this.hackerTauntArray = [];
         this.hackerTauntArray.push(['HELLO WORLD!',' LOL JK, i mean welcome to hell budy!']);
         this.hackerTauntArray.push(['Yeah so,',' I totally hacked your website.']);
@@ -239,7 +236,7 @@ class Play extends Phaser.Scene {
         let effect = Math.floor(Math.random() * this.powerAffects.length);
         this.powerups.add(new Powerup(this, 600, Math.random() * 430 + 25, 
                 "images", this.powerImages[effect], this.powerAffects[effect], 
-                this.powerEnd[effect],).setOrigin(0)).setDepth(100);
+                this.powerEnd[effect],).setOrigin(0)).setDepth(5);
     }
 
     spawnTextBlock(){
