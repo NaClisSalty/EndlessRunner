@@ -27,6 +27,7 @@ Creative tilt: technical side
 We implemented a PID controller for player movement, used same implementation for the x and y axis
 Took a lot of work to fine-tune, feel that I gained a lot of knowledge from the process.
 Despite the pain, I think it turned out really nicely, so picked it to highlight here
+Implementation is in Player.js
 
 Creative tilt: Visual Style and Design
 We implemented a story that unfolds as you reach certin point values. A hacker has taken 
