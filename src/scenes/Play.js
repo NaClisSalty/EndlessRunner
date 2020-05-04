@@ -240,7 +240,7 @@ class Play extends Phaser.Scene {
         this.hackerTauntArray.push(['Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.']);
 
         //Array containing the unlock requirements for each line of text
-        this.hackerThresholds = [20];
+        this.hackerThresholds = [20, 100000000000];
         
     }
 
