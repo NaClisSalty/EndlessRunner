@@ -226,6 +226,8 @@ class Play extends Phaser.Scene {
         this.hackerTauntArray.push(['MOAR MOAR MOAR MOAR! FEED ME SEYMORE!']);
         this.hackerTauntArray.push(['Hey guess what? ','This wholle thing is actually endless and I just made it to mess with you,',' all my messages are preloaded and on repeat. ','Suck it.']);
         
+        //checks number of times the player has gone through all the text
+        this.timesCompleted = 0;
 
         //Array containing the unlock requirements for each line of text
         this.hackerThresholds = [20, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000, 14000, 16000, 18000, 20000, 25000, 30000, 35000, 40000, 45000, 50000];
@@ -264,21 +266,7 @@ class Play extends Phaser.Scene {
         //timer
         this.timeRight.text = "" + Math.floor((this.time.now-this.startTime)/1000);
 
-        //console.log(this.powerupTimer);
-        //update all objects in gameObjects
-        // this.gameObjects.forEach(function(obj) {
-        //     obj.update();
-        // },this);
-        //if enabled outline all gameObjects
-        //useful for seeing hitbox or completely transparent objects
-        // if (this.debugmode) {
-        //     this.renderdebug.clear();
-        //     this.gameObjects.forEach(function(obj){
-        //         this.renderdebug.lineStyle(3, 0xfacade);
-        //         this.renderdebug.strokeRectShape(new Phaser.Geom.Rectangle(
-        //             obj.x,obj.y,obj.width,obj.height));
-        //     },this);
-        // }
+    
         if (!this.player.dead) {
             this.player.update(this.input.activePointer.x, this.input.activePointer.y, delta); 
             
@@ -306,7 +294,7 @@ class Play extends Phaser.Scene {
         this.scoreLeft.text = this.p1Score;
 
 
-        if(this.p1Score>this.hackerThresholds[this.hackerIndex]){
+        if(this.p1Score>this.hackerThresholds[this.hackerIndex] + this.timesCompleted * 50000){
             let setupInnerIndex = 0;
             let totalPriorTime = 0;
             while(setupInnerIndex < this.hackerTauntArray[this.hackerIndex].length){
@@ -320,6 +308,8 @@ class Play extends Phaser.Scene {
                 setupInnerIndex++;
             }
             this.hackerIndex++;
+            if(this.hackerIndex == this.hackerTauntArray.length)
+                this.hackerIndex = 0;
         }
         //change music to music2
         if(this.p1Score>500){
@@ -337,7 +327,8 @@ class Play extends Phaser.Scene {
         }
         //increase mouse size temporarily
         if(this.p1Score>2000){
-            
+            this.powerAffects[0](this.player);
+            this.time.delayedCall(10000, this.powerEnd[0], [this.player], this);
         }
         //music change to music4
         if(this.p1Score>2500){
@@ -346,7 +337,8 @@ class Play extends Phaser.Scene {
         }
         //go slow temporarily
         if(this.p1Score>3000){
-            
+            this.powerAffects[4](this.player);
+            this.time.delayedCall(10000, this.powerEnd[0], [this.player], this);
         }
         //multiple music tracks
         if(this.p1Score>3500){
