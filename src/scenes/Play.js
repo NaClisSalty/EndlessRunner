@@ -291,11 +291,13 @@ class Play extends Phaser.Scene {
     //at various values hacker will talk to player and mess with the game
     //Also handles changing the score
     checkPoints(newPoints){
+        //Update the score
         this.p1Score += newPoints;
         this.scoreLeft.text = this.p1Score;
 
-
+        //check if there's a new group of lines to play
         if(this.p1Score>this.hackerThresholds[this.hackerIndex] + this.timesCompleted * 50000){
+            //If so, we need to set up events to play all the subsections of the line at the right time
             let setupInnerIndex = 0;
             let totalPriorTime = 0;
             while(setupInnerIndex < this.hackerTauntArray[this.hackerIndex].length){
@@ -309,8 +311,11 @@ class Play extends Phaser.Scene {
                 setupInnerIndex++;
             }
             this.hackerIndex++;
-            if(this.hackerIndex == this.hackerTauntArray.length)
+            //If we've reached the end of all the taunts, increment
+            if(this.hackerIndex == this.hackerTauntArray.length){
                 this.hackerIndex = 0;
+                this.timesCompleted++;
+            }
         }
         //change music to music2
         if(this.p1Score>500){
