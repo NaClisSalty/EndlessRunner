@@ -198,6 +198,7 @@ class Play extends Phaser.Scene {
         this.hackerIndex = 0;
         this.hackerTauntArray = ["this string is a test to see if slicing works","this string is the next line of text"];
         this.hackerTaunt = this.hackerTauntArray[0];
+        this.hackerTauntArray.push('Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.')
     }
 
     spawnPowerup(){
@@ -209,7 +210,8 @@ class Play extends Phaser.Scene {
     }
 
     spawnTextBlock(){
-        let newTextBlock = new TextBox(this, 600, Math.random() * 430, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
+        //let newTextBlock = new TextBox(this, 600, Math.random() * 430, "textBlock", 0, Math.floor(Math.random() * 50)).setOrigin(0);
+        let newTextBlock = new TextBox(this, 600, Math.random() * 430, "textBlock", 0, 1).setOrigin(0);
         //lets resize them so they dont take up 80% of the sceen
         //newTextBlock.setScale(Phaser.Math.Between(.05, .15),Phaser.Math.Between(.05, .15));
         //Have to give the scales variables to prevent weird behaviour
@@ -291,9 +293,11 @@ class Play extends Phaser.Scene {
 
     //function to check players score, 
     //at various values hacker will talk to player and mess with the game
-    checkPoints(p1Score){
+    checkPoints(){
         if(this.p1Score>20){
+
         }
+
     }
 
 
