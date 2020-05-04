@@ -15,8 +15,19 @@ class End extends Phaser.Scene {
     }
 
     create(){
+        let endConfig = {
+            fontFamily: 'Courier',
+            fontSize: '20px',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+        }
         this.add.image(0,0, 'endMenu').setScale(.5).setOrigin(0,0);
-
+        this.add.text(game.config.width/3 - 104, game.config.height/2, this.score, endConfig).setOrigin(0)
+        this.add.text(game.config.width/3 * 2 + 12, game.config.height/2, Math.floor(this.timeSurvived/1000), endConfig).setOrigin(0)
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
