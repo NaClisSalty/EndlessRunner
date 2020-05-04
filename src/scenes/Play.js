@@ -196,24 +196,27 @@ class Play extends Phaser.Scene {
         //hacker text initialization
         let hackerConfig = {
             fontFamily: 'Courier',
-            fontSize: '28px',
+            fontSize: '14px',
             color: '#843605',
             align: 'right',
             padding: {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 100
         }
             
 
         this.hackerTauntSlice = 0;
         this.hackerTauntTimer = 0;
         this.hackerIndex = 0;
-        this.hackerText = this.add.text(440, 40, "", hackerConfig);
-        this.hackerTauntArray = ["this string is a test to see if slicing works","this string is the next line of text"];
+        this.hackerText = this.add.text(40, 440, "", hackerConfig);
+        this.hackerTauntArray = [["this string is a test to see if slicing works","this string is the next line of text"]];
         this.hackerTaunt = this.hackerTauntArray[0];
-        this.hackerTauntArray.push('Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.');
+        this.hackerTauntArray.push(['Hey guess what? This wholle thing is actually endless and I just made it to mess with you, all my messages are preloaded and on repeat. Suck it.']);
+
+        this.hackerIndexInner = 0;
+
+        this.once = true;
     }
 
     spawnPowerup(){
@@ -285,7 +288,10 @@ class Play extends Phaser.Scene {
                 this.spawnPowerup();
             }
         }
-        if(this.p1Score>20){
+        this.checkPoints();
+        //if(){
+            
+            /*
             this.hackerTauntTimer += delta;
             if (this.hackerTauntSlice < this.hackerTaunt.length) {
                 if (this.hackerTauntTimer >= Phaser.Math.Between(100, 300)) {
@@ -300,17 +306,32 @@ class Play extends Phaser.Scene {
                     this.hackerIndex += 1;
                     this.hackerTaunt = this.hackerTauntArray[this.hackerIndex]
                 }
-            }
+            }*/
             
 
-        }
+        //}
     }
 
     //function to check players score, 
     //at various values hacker will talk to player and mess with the game
     checkPoints(){
-        if(this.p1Score>20){
-            this.hackerTauntTimer += delta;
+        if(this.p1Score>20 && this.once){
+            this.once = false;
+
+            //this.hackerPrintLine(this.hackerIndex);
+            let setupInnerIndex = 0;
+            let totalPriorTime = 0;
+            while(setupInnerIndex < this.hackerTauntArray[this.hackerIndex].length){
+                this.time.addEvent({
+                    delay: totalPriorTime,
+                    callback: this.hackerPrintLine,
+                    callbackScope: this,
+                    args: [setupInnerIndex, this.hackerIndex]
+                })
+                totalPriorTime += 100 * this.hackerTauntArray[this.hackerIndex][setupInnerIndex++];
+            }
+            this.hackerIndex++;
+            /*this.hackerTauntTimer += delta;
             if (this.hackerTauntSlice < this.hackerTaunt.length) {
                 if (this.hackerTauntTimer >= Phaser.Math.Between(100, 300)) {
                     this.hackerTauntTimer = 0
@@ -325,14 +346,26 @@ class Play extends Phaser.Scene {
                     this.hackerTaunt = this.hackerTauntArray[this.hackerIndex]
                 }
             }
-            
+            */
 
         }
 
     }
 
-    hackerPrint(hackerTauntArray){
+    hackerPrintLine(innerIndex, outerIndex){
+        this.hackerTauntSlice = 0;
+        this.time.addEvent({
+            delay: 100,
+            repeat: this.hackerTauntArray[outerIndex][innerIndex].length,
+            callback: this.hackerSlowTextPrint,
+            callbackScope: this,
+            args: [innerIndex, outerIndex]
+        })
+    }
 
+    hackerSlowTextPrint(innerIndex, outerIndex){
+        this.hackerTauntSlice++;
+        this.hackerText.text = (this.hackerTauntArray[outerIndex][innerIndex].slice(0,this.hackerTauntSlice));
     }
 
 
