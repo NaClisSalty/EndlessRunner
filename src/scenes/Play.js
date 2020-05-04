@@ -38,7 +38,7 @@ class Play extends Phaser.Scene {
 
         //score display
         let scoreConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Neo Sans',
             fontSize: '28px',
             backgroundColor: '#00BCFF',
             color: '#843605',
@@ -51,7 +51,7 @@ class Play extends Phaser.Scene {
         }
         //create a timer and way to check wich difficulty option was chosen
         let timeConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Neo Sans',
             fontSize: '28px',
             backgroundColor: '#00BCFF',
             color: '#843605',
@@ -162,6 +162,7 @@ class Play extends Phaser.Scene {
         let music2 =0;
         let music3 =0;
         let music4 =0;
+        
 
         this.music1 = this.sound.add('music1', {loop: true});
         //music1.setLoop(true);
@@ -181,11 +182,11 @@ class Play extends Phaser.Scene {
         this.music4.setVolume(.2);
         //this.music4.play();
 
-
+        
         //hacker text initialization
         let hackerConfig = {
             fontFamily: 'Neo Sans',
-            fontSize: '32px',
+            fontSize: '28px',
             color: '#FF0000',
             align: 'right',
             padding: {
@@ -388,6 +389,8 @@ class Play extends Phaser.Scene {
         //Just make the powerup deal with it
         powerup.activate();
         //play sound effects
+        //sound effect noise
+        
         this.sound.play('beep');
         this.sound.play('tech_scale');
     }
