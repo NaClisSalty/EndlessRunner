@@ -265,7 +265,7 @@ class Play extends Phaser.Scene {
         
 
         //timer
-        this.timeRight.text = "" + Math.floor((this.time.now-this.startTime)/1000);
+        this.timeRight.text = Math.floor((this.time.now-this.startTime)/1000);
 
     
         if (!this.player.dead) {
