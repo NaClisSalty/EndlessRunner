@@ -264,7 +264,7 @@ class Play extends Phaser.Scene {
 
         if (typeof this.startTime === 'undefined'){
             this.startTime = this.time.now;
-            console.log('undefined');
+            //console.log('undefined');
         }
 
         //timer
