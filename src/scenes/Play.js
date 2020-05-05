@@ -262,8 +262,10 @@ class Play extends Phaser.Scene {
         this.tile.tilePositionX +=4;
         //this.tile.tilePositionY -=4
 
-        if (typeof this.startTime === 'undefined')
+        if (typeof this.startTime === 'undefined'){
             this.startTime = this.time.now;
+            console.log('undefined');
+        }
 
         //timer
         this.timeRight.text = Math.floor((this.time.now-this.startTime)/1000);
