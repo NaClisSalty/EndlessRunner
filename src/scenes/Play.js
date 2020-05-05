@@ -24,7 +24,7 @@ class Play extends Phaser.Scene {
         this.load.atlas('glitch1', 'glitchText.png', 'glitchText.json');
 
         //tile sprite image
-        this.load.image('tile', 'tileSprite1.png');
+        this.load.image('tile', 'tileSprite1.PNG');
     } 
 
     create() {
